@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.HomeFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/white"
+        android:elevation="@dimen/margin_8">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/fidibo_image"
+            android:layout_gravity="center"/>
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        android:elevation="@dimen/margin_8">
+
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CHATS"/>
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="همه" />
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <com.book.fidibo.customeView.PersianTextView
+        android:id="@+id/txt_programing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_8"
+        android:text="برنامه نویسی"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tab_layout" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_programing"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        app:layout_constraintTop_toBottomOf="@id/txt_programing"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <com.book.fidibo.customeView.PersianTextView
+        android:id="@+id/txt_growUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="توسعه فردی"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/recycler_programing"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="@dimen/margin_8" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_growUp"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        app:layout_constraintTop_toBottomOf="@id/txt_growUp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+
+    <com.book.fidibo.customeView.PersianTextView
+        android:id="@+id/txt_psychology"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="روانشناسی"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/recycler_growUp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="@dimen/margin_8" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_psychology"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        app:layout_constraintTop_toBottomOf="@id/txt_psychology"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+        <com.book.fidibo.customeView.PersianTextView
+            android:id="@+id/txt_publisher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ناشران برتر"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="@dimen/margin_8"
+            app:layout_constraintTop_toBottomOf="@id/recycler_psychology" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_publisher1"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:src="@drawable/fidibo_image"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="2dp"
+            android:layout_marginStart="50dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_publisher" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_publisher"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:src="@drawable/fidibo_image"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="50dp"
+            app:layout_constraintTop_toBottomOf="@id/txt_publisher" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bottom_library"
+        android:icon="@drawable/ic_icon_library"
+        android:title="کتابخانه"
+        />
+
+    <item
+        android:id="@+id/bottom_search"
+        android:icon="@drawable/ic_icon_search"
+        android:title="جستجو"
+        />
+
+    <item
+        android:id="@+id/bottom_special"
+        android:icon="@drawable/ic_icon_spacial"
+        android:title="ویژه"
+        />
+
+    <item
+        android:id="@+id/bottom_home"
+        android:icon="@drawable/ic_icon_home"
+        android:title="خانه"
+        />
+
+</menu>

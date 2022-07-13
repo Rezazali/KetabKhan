@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/drawable/background_splashsceen.xml" value="0.1805" />
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/drawable/bottom_navigation_selector.xml" value="0.1275" />
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/drawable/ic_baseline_arrow_back_ios_24.xml" value="0.166" />
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/drawable/ic_icon_download.xml" value="0.167" />
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/drawable/ic_icon_growup.xml" value="0.166" />
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/drawable/ic_icon_home.xml" value="0.1275" />
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/drawable/ic_icon_library.xml" value="0.1275" />
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/drawable/ic_icon_physiology.xml" value="0.166" />
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/drawable/ic_icon_programing.xml" value="0.1" />
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/drawable/ic_icon_search.xml" value="0.1275" />
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/drawable/ic_icon_spacial.xml" value="0.1275" />
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/drawable/image_shadow.xml" value="0.1" />
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/layout/activity_book_detail.xml" value="0.25" />
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/layout/activity_category_book.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/layout/activity_main.xml" value="0.192481884057971" />
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/layout/activity_pdf_book.xml" value="0.1875" />
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/layout/activity_pdf_viewr_book.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/layout/activity_splash_screen.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/layout/book_detail_row.xml" value="0.16168478260869565" />
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/layout/book_row.xml" value="0.20244565217391305" />
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/layout/category_row.xml" value="0.22" />
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/layout/fragment_home.xml" value="0.33" />
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/layout/fragment_libray.xml" value="0.192481884057971" />
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/layout/fragment_search.xml" value="0.18" />
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/layout/fragment_special.xml" value="0.192481884057971" />
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/layout/listbook_row.xml" value="0.22" />
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/menu/bottom_nav.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/reza/AppData/Local/Android/Sdk/platforms/android-32/data/res/layout/auto_complete_list.xml" value="0.22447916666666667" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
