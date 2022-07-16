@@ -50,10 +50,8 @@ public class WebServiceCaller {
         });
    }
 
-/*
-   public void getCategoryGrowUp(IResponseListener listener){
-
-        iService.getCategoryGrowUp().enqueue(new Callback<CategoryModel>() {
+   public void getSearchBook(IResponseListener listener){
+        iService.getSearchBook().enqueue(new Callback<CategoryModel>() {
             @Override
             public void onResponse(@NonNull Call<CategoryModel> call, @NonNull Response<CategoryModel> response) {
                 listener.onSuccess(response.body());
@@ -64,22 +62,7 @@ public class WebServiceCaller {
                 listener.onFailure(t.getMessage());
             }
         });
-
    }
 
-
-    public void getCategoryPsychology(IResponseListener listener){
-        iService.getCategoryPsychology().enqueue(new Callback<CategoryModel>() {
-            @Override
-            public void onResponse(@NonNull Call<CategoryModel> call, @NonNull Response<CategoryModel> response) {
-                listener.onSuccess(response.body());
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<CategoryModel> call, @NonNull Throwable t) {
-                listener.onFailure(t.getMessage());
-            }
-        });
-    }*/
 
 }

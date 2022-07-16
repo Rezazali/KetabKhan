@@ -16,6 +16,9 @@ public interface IService {
     @GET("api.php")
     Call<CategoryModel> getBookByCategory(@Query("cat_id") int id);
 
+    @GET("api.php?search_text=")
+    Call<CategoryModel> getSearchBook();
+
 
 
 

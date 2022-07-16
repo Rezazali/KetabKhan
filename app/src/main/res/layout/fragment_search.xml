@@ -7,13 +7,6 @@
     tools:context=".fragment.SearchFragment">
 
 
-  <ListView
-      android:id="@+id/listView"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent">
-
-
-  </ListView>
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -27,6 +20,9 @@
             android:id="@+id/searchView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:queryHint="Search Hear...."
+            app:iconifiedByDefault="false"
+
         />
 
 

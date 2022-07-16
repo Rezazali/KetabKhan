@@ -13,7 +13,6 @@ import android.view.View;
 import com.book.fidibo.MainActivity;
 import com.book.fidibo.R;
 import com.book.fidibo.adapter.CategoryAdapter;
-import com.book.fidibo.databinding.ActivityCategoryBookBinding;
 import com.book.fidibo.models.Category;
 import com.book.fidibo.models.CategoryModel;
 import com.book.fidibo.ui.IResponseListener;
@@ -25,15 +24,15 @@ import java.util.List;
 public class SearchBookByCategoryActivity extends AppCompatActivity implements CategoryAdapter.UserOnClickListener {
 
 
-    ActivityCategoryBookBinding binding;
-
+    RecyclerView recyclerCategoryBook;
     WebServiceCaller webServiceCaller;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityCategoryBookBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
 
+        setContentView(R.layout.search_book_by_category);
+
+        recyclerCategoryBook = findViewById(R.id.recyclerCategoryBook);
 
 
         getCategoryPrograming();
@@ -55,14 +54,15 @@ public class SearchBookByCategoryActivity extends AppCompatActivity implements C
 
                 CategoryModel model = (CategoryModel) ResponseMessage;
                 List<Category> categoryList = model.getCategoryList();
+
                 CategoryAdapter adapter = new CategoryAdapter(categoryList,getApplicationContext(),
                         SearchBookByCategoryActivity.this);
 
-                binding.recyclerCategoryBook.setAdapter(adapter);
+                recyclerCategoryBook.setAdapter(adapter);
 
                 LinearLayoutManager manager =
                         new LinearLayoutManager(getApplicationContext(),RecyclerView.VERTICAL,false);
-                binding.recyclerCategoryBook.setLayoutManager(manager);
+                recyclerCategoryBook.setLayoutManager(manager);
 
             }
 
@@ -79,14 +79,15 @@ public class SearchBookByCategoryActivity extends AppCompatActivity implements C
             public void onSuccess(Object ResponseMessage) {
                 CategoryModel model = (CategoryModel) ResponseMessage;
                 List<Category> categoryList = model.getCategoryList();
+
                 CategoryAdapter adapter = new CategoryAdapter(categoryList,getApplicationContext(),
                         SearchBookByCategoryActivity.this);
 
-                binding.recyclerCategoryBook.setAdapter(adapter);
+                recyclerCategoryBook.setAdapter(adapter);
 
                 LinearLayoutManager manager =
                         new LinearLayoutManager(getApplicationContext(),RecyclerView.VERTICAL,false);
-                binding.recyclerCategoryBook.setLayoutManager(manager);
+                recyclerCategoryBook.setLayoutManager(manager);
 
             }
 
@@ -103,14 +104,15 @@ public class SearchBookByCategoryActivity extends AppCompatActivity implements C
             public void onSuccess(Object ResponseMessage) {
                 CategoryModel model = (CategoryModel) ResponseMessage;
                 List<Category> categoryList = model.getCategoryList();
+
                 CategoryAdapter adapter = new CategoryAdapter(categoryList,getApplicationContext(),
                         SearchBookByCategoryActivity.this);
 
-                binding.recyclerCategoryBook.setAdapter(adapter);
+                recyclerCategoryBook.setAdapter(adapter);
 
                 LinearLayoutManager manager =
                         new LinearLayoutManager(getApplicationContext(),RecyclerView.VERTICAL,false);
-                binding.recyclerCategoryBook.setLayoutManager(manager);
+                recyclerCategoryBook.setLayoutManager(manager);
 
             }
 

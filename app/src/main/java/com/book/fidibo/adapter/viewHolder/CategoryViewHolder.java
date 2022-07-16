@@ -1,4 +1,4 @@
-package com.book.fidibo.adapter;
+package com.book.fidibo.adapter.viewHolder;
 
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -13,10 +13,10 @@ import com.book.fidibo.R;
 
 public class CategoryViewHolder extends RecyclerView.ViewHolder {
 
-    AppCompatImageView img_book;
-    AppCompatTextView txt_bookTitle;
-    AppCompatTextView txt_publisher;
-    RelativeLayout rel_book;
+    public AppCompatImageView img_book;
+    public AppCompatTextView txt_bookTitle;
+    public AppCompatTextView txt_publisher;
+    public RelativeLayout rel_book;
 
     public CategoryViewHolder(@NonNull View itemView) {
         super(itemView);

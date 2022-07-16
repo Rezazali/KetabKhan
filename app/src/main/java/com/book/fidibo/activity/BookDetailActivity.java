@@ -37,7 +37,7 @@ public class BookDetailActivity extends AppCompatActivity {
 
         setDataBookDetail();
 
-        binding.imgBack.setOnClickListener(view -> finish());
+        binding.imgBack.setOnClickListener(view -> onBackPressed());
 
         binding.btnDownloadPdf.setOnClickListener(view -> {
 

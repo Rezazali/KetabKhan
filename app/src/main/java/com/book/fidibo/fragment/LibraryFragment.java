@@ -1,6 +1,7 @@
 package com.book.fidibo.fragment;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -63,6 +64,7 @@ public class LibraryFragment extends Fragment implements CategoryAdapter.UserOnC
         return binding.getRoot();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -71,6 +73,7 @@ public class LibraryFragment extends Fragment implements CategoryAdapter.UserOnC
                 LibraryFragment.this);
         binding.recyclerLibrary.setAdapter(adapter);
 
+        adapter.notifyDataSetChanged();
 
 
         LinearLayoutManager manager =

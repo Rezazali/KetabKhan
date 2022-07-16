@@ -1,7 +1,6 @@
 package com.book.fidibo.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,13 +9,10 @@ import android.widget.Filter;
 import android.widget.Filterable;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.book.fidibo.R;
-import com.book.fidibo.activity.BookDetailActivity;
+import com.book.fidibo.adapter.viewHolder.CategoryViewHolder;
 import com.book.fidibo.models.Category;
 import com.squareup.picasso.Picasso;
 
@@ -24,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> implements Filterable {
+public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> {
 
 
 
@@ -38,8 +34,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> im
         this.context = context;
         this.userOnClickListener = userOnClickListener;
     }
-
-
 
 
     public interface UserOnClickListener{
@@ -80,44 +74,5 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> im
     public int getItemCount() {
         return categoryList.size();
     }
-
-    @Override
-    public Filter getFilter() {
-        return filterUSer;
-    }
-
-
-    private Filter filterUSer = new Filter() {
-        @Override
-        protected FilterResults performFiltering(CharSequence charSequence) {
-
-            String searchText = charSequence.toString().toLowerCase();
-            List<Category> tempList = new ArrayList<>();
-
-            if (searchText.length() ==0 || searchText.isEmpty()){
-                tempList.addAll(categoryList);
-            }else {
-                for (Category item : categoryList){
-
-                    if (item.getBookTitle().toLowerCase().contains(searchText)){
-                        tempList.add(item);
-                    }
-                }
-            }
-            FilterResults results = new FilterResults();
-            results.values = tempList;
-
-            return results;
-        }
-
-        @Override
-        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-            categoryList.clear();
-            categoryList.addAll((Collection<? extends Category>) filterResults.values);
-            notifyDataSetChanged();
-        }
-    };
-
-
 
 }

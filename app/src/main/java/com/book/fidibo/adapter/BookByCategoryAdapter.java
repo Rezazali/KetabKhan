@@ -9,11 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.book.fidibo.R;
 import com.book.fidibo.activity.BookDetailActivity;
+import com.book.fidibo.adapter.viewHolder.BookByCategoryViewHolder;
 import com.book.fidibo.models.Category;
 import com.squareup.picasso.Picasso;
 

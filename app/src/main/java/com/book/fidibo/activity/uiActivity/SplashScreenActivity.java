@@ -1,4 +1,4 @@
-package com.book.fidibo.activity;
+package com.book.fidibo.activity.uiActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 

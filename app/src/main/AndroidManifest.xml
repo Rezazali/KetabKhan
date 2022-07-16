@@ -22,13 +22,16 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".activity.uiActivity.SearchViewActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.PdfBookActivity"
             android:exported="false" />
         <activity
             android:name=".activity.BookDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.SplashScreenActivity"
+            android:name=".activity.uiActivity.SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

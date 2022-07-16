@@ -1,4 +1,4 @@
-package com.book.fidibo.adapter;
+package com.book.fidibo.adapter.viewHolder;
 
 import android.view.View;
 
@@ -10,7 +10,8 @@ import com.book.fidibo.R;
 
 public class BookByCategoryViewHolder extends RecyclerView.ViewHolder {
 
-    AppCompatImageView img_book;
+    public AppCompatImageView img_book;
+
     public BookByCategoryViewHolder(@NonNull View itemView) {
         super(itemView);
         img_book = itemView.findViewById(R.id.img_book_category);
