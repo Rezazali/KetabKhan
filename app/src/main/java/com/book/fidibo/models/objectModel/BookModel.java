@@ -1,5 +1,6 @@
-package com.book.fidibo.models;
+package com.book.fidibo.models.objectModel;
 
+import com.book.fidibo.models.Book;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

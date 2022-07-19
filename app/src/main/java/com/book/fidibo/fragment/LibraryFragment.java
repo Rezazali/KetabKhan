@@ -1,6 +1,6 @@
 package com.book.fidibo.fragment;
 
-import android.Manifest;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,11 +8,11 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,17 +22,8 @@ import com.book.fidibo.adapter.CategoryAdapter;
 import com.book.fidibo.database.AppDatabase;
 import com.book.fidibo.databinding.FragmentLibrayBinding;
 import com.book.fidibo.models.Category;
-import com.book.fidibo.ui.WebServiceCaller;
-import com.karumi.dexter.Dexter;
-import com.karumi.dexter.PermissionToken;
-import com.karumi.dexter.listener.PermissionDeniedResponse;
-import com.karumi.dexter.listener.PermissionGrantedResponse;
-import com.karumi.dexter.listener.PermissionRequest;
-import com.karumi.dexter.listener.single.PermissionListener;
+import com.book.fidibo.requestBody.WebServiceCaller;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 
@@ -53,13 +44,11 @@ public class LibraryFragment extends Fragment implements CategoryAdapter.UserOnC
         binding = FragmentLibrayBinding.inflate(getLayoutInflater());
         webServiceCaller = new WebServiceCaller();
 
-        ((AppCompatActivity) requireActivity()).setSupportActionBar(binding.toolbar);
-        Objects.requireNonNull(((AppCompatActivity) requireActivity())
-                .getSupportActionBar()).
-                setDisplayShowTitleEnabled(false);
+        setToolbar(binding.toolbar);
+
 
         appDatabase = AppDatabase.getInstance(getActivity());
-        runTimePermission();
+
 
         return binding.getRoot();
     }
@@ -88,27 +77,16 @@ public class LibraryFragment extends Fragment implements CategoryAdapter.UserOnC
         intent.putExtra("data",category);
         startActivity(intent);
     }
-    public void runTimePermission(){
 
-        Dexter.withContext(getActivity()).withPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
-                .withListener(new PermissionListener() {
-                    @Override
-                    public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
-
-                    }
-
-                    @Override
-                    public void onPermissionDenied(PermissionDeniedResponse permissionDeniedResponse) {
-
-                    }
-
-                    @Override
-                    public void onPermissionRationaleShouldBeShown(PermissionRequest permissionRequest, PermissionToken permissionToken) {
-                        permissionToken.continuePermissionRequest();
-                    }
-                }).check();
+    public void setToolbar(Toolbar toolbar){
+        ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
+        this.enableToolbar(false);
     }
 
-
-
+    public void enableToolbar(boolean isValid){
+        Objects.requireNonNull(((AppCompatActivity) requireActivity())
+                        .getSupportActionBar())
+                .setDisplayShowTitleEnabled(isValid);
+    }
 }
+

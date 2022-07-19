@@ -1,4 +1,4 @@
-package com.book.fidibo.ui;
+package com.book.fidibo.requestBody;
 
 public interface IResponseListener {
 

@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.book.fidibo.MainActivity;
-import com.book.fidibo.R;
 import com.book.fidibo.databinding.ActivitySplashScreenBinding;
 
 @SuppressLint("CustomSplashScreen")
@@ -28,12 +27,9 @@ public class SplashScreenActivity extends AppCompatActivity {
         binding.lottie.animate().setDuration(2000).setStartDelay(2900);
 
         Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
-            }
+        handler.postDelayed(() -> {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
         },5000);
     }
 }

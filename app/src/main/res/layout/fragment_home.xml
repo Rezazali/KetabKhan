@@ -39,7 +39,9 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="CHATS"/>
+            >
+
+        </com.google.android.material.tabs.TabItem>
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
@@ -48,7 +50,7 @@
 
     </com.google.android.material.tabs.TabLayout>
 
-    <com.book.fidibo.customeView.PersianTextView
+    <com.book.fidibo.customeview.PersianTextView
         android:id="@+id/txt_programing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -67,7 +69,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
-    <com.book.fidibo.customeView.PersianTextView
+    <com.book.fidibo.customeview.PersianTextView
         android:id="@+id/txt_growUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -89,7 +91,7 @@
         />
 
 
-    <com.book.fidibo.customeView.PersianTextView
+    <com.book.fidibo.customeview.PersianTextView
         android:id="@+id/txt_psychology"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -109,7 +111,7 @@
         app:layout_constraintStart_toStartOf="parent"
         />
 
-        <com.book.fidibo.customeView.PersianTextView
+        <com.book.fidibo.customeview.PersianTextView
             android:id="@+id/txt_publisher"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

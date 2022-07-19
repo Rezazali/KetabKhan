@@ -1,9 +1,9 @@
-package com.book.fidibo.ui;
+package com.book.fidibo.requestBody;
 
 import androidx.annotation.NonNull;
 
-import com.book.fidibo.models.BookModel;
-import com.book.fidibo.models.CategoryModel;
+import com.book.fidibo.models.objectModel.BookModel;
+import com.book.fidibo.models.objectModel.CategoryModel;
 import com.book.fidibo.webServise.ApiUtils;
 import com.book.fidibo.webServise.IService;
 

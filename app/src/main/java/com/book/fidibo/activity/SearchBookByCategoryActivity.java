@@ -5,23 +5,19 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 
-import com.book.fidibo.MainActivity;
 import com.book.fidibo.R;
 import com.book.fidibo.adapter.CategoryAdapter;
 import com.book.fidibo.models.Category;
-import com.book.fidibo.models.CategoryModel;
-import com.book.fidibo.ui.IResponseListener;
-import com.book.fidibo.ui.WebServiceCaller;
-import com.squareup.picasso.Picasso;
+import com.book.fidibo.models.objectModel.CategoryModel;
+import com.book.fidibo.requestBody.IResponseListener;
+import com.book.fidibo.requestBody.WebServiceCaller;
 
 import java.util.List;
 
 public class SearchBookByCategoryActivity extends AppCompatActivity implements CategoryAdapter.UserOnClickListener {
+
 
 
     RecyclerView recyclerCategoryBook;

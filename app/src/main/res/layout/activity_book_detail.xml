@@ -19,12 +19,15 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+
+        >
 
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            >
 
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -38,9 +41,10 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_baseline_share_24"
+                android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:layout_alignParentStart="true"/>
+                app:srcCompat="@drawable/ic_baseline_share_24"
+                />
 
         </RelativeLayout>
 
@@ -67,7 +71,7 @@
 
         </androidx.cardview.widget.CardView>
 
-    <com.book.fidibo.customeView.PersianTextView
+    <com.book.fidibo.customeview.PersianTextView
         android:id="@+id/txt_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -78,7 +82,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_margin="@dimen/margin_8"/>
 
-    <com.book.fidibo.customeView.PersianTextView
+    <com.book.fidibo.customeview.PersianTextView
         android:id="@+id/txt_publisher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -124,7 +128,7 @@
         app:colorClickableText="@color/purple_500"/>
 
 
-    <com.book.fidibo.customeView.PersianTextView
+    <com.book.fidibo.customeview.PersianTextView
         android:id="@+id/txt_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -155,7 +159,7 @@
                 android:background="#F3EBEB">
 
 
-                <com.book.fidibo.customeView.PersianTextView
+                <com.book.fidibo.customeview.PersianTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_8"
@@ -185,7 +189,7 @@
                     app:layout_constraintTop_toBottomOf="@id/txt_publisher_info" />
 
 
-                <com.book.fidibo.customeView.PersianTextView
+                <com.book.fidibo.customeview.PersianTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_8"
@@ -216,7 +220,7 @@
                     app:layout_constraintTop_toBottomOf="@id/txt_category" />
 
 
-                <com.book.fidibo.customeView.PersianTextView
+                <com.book.fidibo.customeview.PersianTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_8"

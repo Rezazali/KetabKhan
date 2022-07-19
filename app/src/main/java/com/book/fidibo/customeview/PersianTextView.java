@@ -1,4 +1,4 @@
-package com.book.fidibo.customeView;
+package com.book.fidibo.customeview;
 
 import android.content.Context;
 import android.graphics.Typeface;

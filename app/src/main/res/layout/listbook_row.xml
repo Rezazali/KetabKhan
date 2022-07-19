@@ -45,7 +45,7 @@
                 android:layout_toStartOf="@id/img_book"
                 android:layout_margin="@dimen/margin_8" />
 
-            <com.book.fidibo.customeView.PersianTextView
+            <com.book.fidibo.customeview.PersianTextView
                 android:id="@+id/txt_publisher"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

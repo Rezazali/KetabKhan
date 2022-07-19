@@ -16,9 +16,9 @@ import android.view.ViewGroup;
 import com.book.fidibo.adapter.BookByCategoryAdapter;
 import com.book.fidibo.databinding.FragmentHomeBinding;
 import com.book.fidibo.models.Category;
-import com.book.fidibo.models.CategoryModel;
-import com.book.fidibo.ui.IResponseListener;
-import com.book.fidibo.ui.WebServiceCaller;
+import com.book.fidibo.models.objectModel.CategoryModel;
+import com.book.fidibo.requestBody.IResponseListener;
+import com.book.fidibo.requestBody.WebServiceCaller;
 
 import java.util.List;
 import java.util.Objects;
@@ -42,7 +42,6 @@ public class HomeFragment extends Fragment {
 
 
         setToolbar(binding.toolbar);
-        enableToolbar();
 
         getCategoryPrograming();
         getCategoryGrowUp();
@@ -79,8 +78,8 @@ public class HomeFragment extends Fragment {
 
             }
         },2);
-
     }
+
 
     public void getCategoryGrowUp(){
         webServiceCaller.getBookByCategory(new IResponseListener() {
@@ -104,6 +103,7 @@ public class HomeFragment extends Fragment {
             }
         },3);
     }
+
 
     public void  getCategoryPsychology(){
         webServiceCaller.getBookByCategory(new IResponseListener() {
@@ -135,12 +135,12 @@ public class HomeFragment extends Fragment {
 
     public void setToolbar(Toolbar toolbar){
         ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
+        this.enableToolbar(false);
     }
 
-    public void enableToolbar(){
-
+    public void enableToolbar(boolean isValid){
         Objects.requireNonNull(((AppCompatActivity) requireActivity())
                         .getSupportActionBar())
-                .setDisplayShowTitleEnabled(false);
+                .setDisplayShowTitleEnabled(isValid);
     }
 }

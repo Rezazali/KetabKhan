@@ -1,7 +1,7 @@
 package com.book.fidibo.webServise;
 
-import com.book.fidibo.models.BookModel;
-import com.book.fidibo.models.CategoryModel;
+import com.book.fidibo.models.objectModel.BookModel;
+import com.book.fidibo.models.objectModel.CategoryModel;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

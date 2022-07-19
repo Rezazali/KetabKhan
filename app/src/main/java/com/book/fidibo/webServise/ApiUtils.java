@@ -14,7 +14,6 @@ public class ApiUtils {
 
     }
 
-
     public static Retrofit getRetrofit(){
 
         if (retrofit == null){
