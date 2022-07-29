@@ -3,9 +3,11 @@ package com.book.fidibo.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import com.book.fidibo.databinding.ActivityPdfBookBinding;
+import com.book.fidibo.models.Category;
 
 
 import java.io.File;
@@ -13,6 +15,8 @@ import java.io.File;
 
 public class PdfBookActivity extends AppCompatActivity {
     ActivityPdfBookBinding binding;
+    Bundle bundle;
+    Category category;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,8 +24,14 @@ public class PdfBookActivity extends AppCompatActivity {
         binding = ActivityPdfBookBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-       // File myFile = new File(getFilesDir().toString());
-        File file = new File("/storage/emulated/0/Download/34032_Ubuntu-Linux-Toolbox-1000+-Commands-for-Ubuntu-and-Debian-Power-Users-by-Christopher-Negus-(z-lib.org).pdf");
+
+        bundle = getIntent().getExtras();
+        category = bundle.getParcelable("data");
+
+
+        @SuppressLint("SdCardPath")
+        File file = new File("/data/data/com.book.fidibo/files/downloads/"+category.getBookTitle()+".pdf");
+
 
         binding.pdfView.fromFile(file).load();
 

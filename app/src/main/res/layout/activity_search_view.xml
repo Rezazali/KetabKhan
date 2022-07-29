@@ -14,14 +14,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.SearchView
+        <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/searchView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:queryHint="Search Hear...."
-            app:iconifiedByDefault="false"
-
-            />
+            app:queryHint="@string/app_name"
+            app:iconifiedByDefault="true"
+            android:layoutDirection="rtl"
+            android:textDirection="rtl"
+            android:imeOptions="actionSearch"
+            android:supportsRtl="true" />
 
 
     </androidx.appcompat.widget.Toolbar>

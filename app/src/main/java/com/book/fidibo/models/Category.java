@@ -14,6 +14,8 @@ import com.google.gson.annotations.SerializedName;
 @Entity(tableName = "tbl_book")
 public class Category implements Parcelable {
 
+
+
     @PrimaryKey(autoGenerate = true)
     private int book_id;
 

@@ -3,6 +3,7 @@ package com.book.fidibo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 
 
@@ -10,6 +11,7 @@ import android.os.Bundle;
 
 
 import android.view.WindowManager;
+import android.widget.CompoundButton;
 
 import com.book.fidibo.adapter.TabsAdapter;
 import com.book.fidibo.databinding.ActivityMainBinding;
@@ -41,6 +43,10 @@ public class MainActivity extends AppCompatActivity {
        this.setClickMenu();
 
        this.setBottomNav();
+
+       binding.viewPager.setCurrentItem(3);
+       binding.bottomNav.getMenu().findItem(R.id.bottom_home).setChecked(true);
+
 
 
     }
@@ -86,8 +92,6 @@ public class MainActivity extends AppCompatActivity {
         fragmentList.add(new SearchFragment());
         fragmentList.add(new SpecialFragment());
         fragmentList.add(new HomeFragment());
-
-
 
 
         TabsAdapter adapter = new TabsAdapter(MainActivity.this,fragmentList);

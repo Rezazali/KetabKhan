@@ -2,8 +2,11 @@ package com.book.fidibo.activity;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -16,9 +19,17 @@ import android.util.Log;
 import android.widget.Toast;
 
 
+import com.book.fidibo.adapter.BookByCategoryAdapter;
+import com.book.fidibo.adapter.CategoryAdapter;
+import com.book.fidibo.adapter.LibraryAdapter;
 import com.book.fidibo.database.AppDatabase;
 import com.book.fidibo.databinding.ActivityBookDetailBinding;
+import com.book.fidibo.models.Book;
 import com.book.fidibo.models.Category;
+import com.book.fidibo.models.objectModel.BookModel;
+import com.book.fidibo.models.objectModel.CategoryModel;
+import com.book.fidibo.requestBody.IResponseListener;
+import com.book.fidibo.requestBody.WebServiceCaller;
 import com.downloader.Error;
 import com.downloader.OnCancelListener;
 import com.downloader.OnDownloadListener;
@@ -30,19 +41,32 @@ import com.downloader.Progress;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
+import java.util.List;
 
-public class BookDetailActivity extends AppCompatActivity {
+public class BookDetailActivity extends AppCompatActivity implements BookByCategoryAdapter.UserOnClickListener {
 
 
     AppDatabase appDatabase;
     ActivityBookDetailBinding binding;
+
     Bundle bundle;
+
     Category category;
+
+    Book book;
+    /*List<Book> categoryList;*/
+
+    WebServiceCaller webServiceCaller;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityBookDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+
+
+
+        setSupportActionBar(binding.toolbar);
 
         //create tow methode and filter tow class for show in the onCreate
         ProgressDialog dialog = new ProgressDialog(this);
@@ -50,27 +74,75 @@ public class BookDetailActivity extends AppCompatActivity {
 
         bundle = getIntent().getExtras();
         category = bundle.getParcelable("data");
+
+        Log.d("","");
+
+        book = bundle.getParcelable("dataa");
+
+      /*  categoryList = getIntent().getParcelableArrayListExtra("dataa");
+        if(categoryList==null) categoryList = getIntent().getParcelableExtra("dataa");*/
+
+
+
+        webServiceCaller = new WebServiceCaller();
+
+        webServiceCaller.getListBook(new IResponseListener() {
+            @Override
+            public void onSuccess(Object ResponseMessage) {
+
+                Log.d("","");
+                BookModel model = (BookModel) ResponseMessage;
+                List<Book>bookList = model.getONLINEBook();
+
+                BookByCategoryAdapter adapter = new BookByCategoryAdapter(bookList,getApplicationContext(),BookDetailActivity.this::onClick);
+                binding.recyclerRecent.setAdapter(adapter);
+
+                LinearLayoutManager manager = new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.HORIZONTAL,false);
+                binding.recyclerRecent.setLayoutManager(manager);
+
+
+
+            }
+
+            @Override
+            public void onFailure(String errorResponseMessage) {
+
+            }
+        });
+
+        if (category != null){
+            setDataBookDetail();
+            binding.txtTitleToolbar.setText(category.getBookTitle());
+            binding.txtTitle.setText(category.getBookTitle());
+        }else{
+
+            binding.txtPublisher.setText(book.getBookPublisher());
+            Spanned htmlAsSpanned = Html.fromHtml(book.getBookDescription());
+            binding.txtDescription.setText(htmlAsSpanned);
+
+            binding.txtCategory.setText(book.getCategoryName());
+            binding.txtPublisherInfo.setText(book.getBookPublisher());
+            binding.txtDownload.setText(book.getTotalDownload());
+            Picasso.get().load(Uri.parse(book.getBookThumbnailS())).into(binding.imgBookDetail);
+
+        }
+
+
+
+
         appDatabase = AppDatabase.getInstance(getApplicationContext());
 
         Log.d("","");
 
-        setDataBookDetail();
 
-        String dirPath = getFilesDir().getAbsolutePath()+File.separator+"downloads";
+        @SuppressLint("SdCardPath")
+        String dirPath = "/data/data/com.book.fidibo/files/downloads";
 
 
 
         binding.imgBack.setOnClickListener(view -> onBackPressed());
 
         binding.btnDownloadPdf.setOnClickListener(view -> {
-/*
-            Intent intent = new Intent(Intent.ACTION_VIEW,
-                    Uri.parse(category.getBookUrl()));
-            startActivity(intent);
-
-            this.saveBook(category.getId());
-
-            binding.btnDownloadPdf.setText("showPdf");*/
 
             downloadManager(dialog,dirPath);
 
@@ -90,6 +162,7 @@ public class BookDetailActivity extends AppCompatActivity {
         }
     }
 
+
     public void setDataBookDetail(){
 
         Spanned htmlAsSpanned = Html.fromHtml(category.getBookDescription());
@@ -105,6 +178,7 @@ public class BookDetailActivity extends AppCompatActivity {
         Picasso.get().load(Uri.parse(category.getBookThumbnailS())).into(binding.imgBookDetail);
     }
 
+
     public void downloadManager(Dialog dialog,String dirPath){
         PRDownloader.download(String.valueOf(Uri.parse(category.getBookUrl())),dirPath,category.getBookTitle()+".pdf")
                 .build()
@@ -115,14 +189,11 @@ public class BookDetailActivity extends AppCompatActivity {
                     }
                 })
 
-                .setOnProgressListener(new OnProgressListener() {
-                    @Override
-                    public void onProgress(Progress progress) {
-                        dialog.show();
-                            /*long per = progress.currentBytes*100 /progress.totalBytes;
-                            dialog.setMessage("downloding..."+per);*/
+                .setOnProgressListener(progress -> {
+                    dialog.show();
+                        /*long per = progress.currentBytes*100 /progress.totalBytes;
+                        dialog.setMessage("downloding..."+per);*/
 
-                    }
                 })
                 .start(new OnDownloadListener() {
                     @Override
@@ -130,6 +201,11 @@ public class BookDetailActivity extends AppCompatActivity {
                         Toast.makeText(BookDetailActivity.this, "completed", Toast.LENGTH_SHORT).show();
                         Log.d("","");
                         dialog.cancel();
+
+                        Intent intent = new Intent(BookDetailActivity.this,PdfBookActivity.class);
+                        intent.putExtra("data",category);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
                     }
 
                     @Override
@@ -139,5 +215,22 @@ public class BookDetailActivity extends AppCompatActivity {
                         Log.d("","");
                     }
                 });
+    }
+
+
+
+    public void setrecy(){
+
+
+
+    }
+
+    @Override
+    public void onClick(Book book) {
+        Log.d("","");
+        Intent intent = new Intent(getApplicationContext(), BookDetailActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("dataa",book);
+        startActivity(intent);
     }
 }

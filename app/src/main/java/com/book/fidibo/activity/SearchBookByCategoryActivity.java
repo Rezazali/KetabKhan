@@ -1,11 +1,15 @@
 package com.book.fidibo.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.util.Log;
+import android.view.View;
 
 import com.book.fidibo.R;
 import com.book.fidibo.adapter.CategoryAdapter;
@@ -14,14 +18,18 @@ import com.book.fidibo.models.objectModel.CategoryModel;
 import com.book.fidibo.requestBody.IResponseListener;
 import com.book.fidibo.requestBody.WebServiceCaller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SearchBookByCategoryActivity extends AppCompatActivity implements CategoryAdapter.UserOnClickListener {
 
 
 
+
     RecyclerView recyclerCategoryBook;
-    WebServiceCaller webServiceCaller;
+    AppCompatImageView img_back;
+
+    List<Category> category;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,102 +37,31 @@ public class SearchBookByCategoryActivity extends AppCompatActivity implements C
         setContentView(R.layout.search_book_by_category);
 
         recyclerCategoryBook = findViewById(R.id.recyclerCategoryBook);
+        img_back = findViewById(R.id.img_back);
 
 
-        getCategoryPrograming();
-
-        getCategoryGrowUp();
-
-        getCategoryPsychology();
+        Log.d("","");
+        category = getIntent().getParcelableArrayListExtra("data");
 
 
+        CategoryAdapter categoryAdapter = new CategoryAdapter(category,SearchBookByCategoryActivity.this,SearchBookByCategoryActivity.this);
 
-    }
+        recyclerCategoryBook.setAdapter(categoryAdapter);
 
-    public void getCategoryPrograming(){
-        webServiceCaller = new WebServiceCaller();
-        webServiceCaller.getBookByCategory(new IResponseListener() {
-            @Override
-            public void onSuccess(Object ResponseMessage) {
+        LinearLayoutManager manager = new LinearLayoutManager(SearchBookByCategoryActivity.this,RecyclerView.VERTICAL,false);
+        recyclerCategoryBook.setLayoutManager(manager);
 
 
-                CategoryModel model = (CategoryModel) ResponseMessage;
-                List<Category> categoryList = model.getCategoryList();
-
-                CategoryAdapter adapter = new CategoryAdapter(categoryList,getApplicationContext(),
-                        SearchBookByCategoryActivity.this);
-
-                recyclerCategoryBook.setAdapter(adapter);
-
-                LinearLayoutManager manager =
-                        new LinearLayoutManager(getApplicationContext(),RecyclerView.VERTICAL,false);
-                recyclerCategoryBook.setLayoutManager(manager);
-
-            }
-
-            @Override
-            public void onFailure(String errorResponseMessage) {
-
-            }
-        },2);
-    }
-
-    public void getCategoryGrowUp(){
-        webServiceCaller.getBookByCategory(new IResponseListener() {
-            @Override
-            public void onSuccess(Object ResponseMessage) {
-                CategoryModel model = (CategoryModel) ResponseMessage;
-                List<Category> categoryList = model.getCategoryList();
-
-                CategoryAdapter adapter = new CategoryAdapter(categoryList,getApplicationContext(),
-                        SearchBookByCategoryActivity.this);
-
-                recyclerCategoryBook.setAdapter(adapter);
-
-                LinearLayoutManager manager =
-                        new LinearLayoutManager(getApplicationContext(),RecyclerView.VERTICAL,false);
-                recyclerCategoryBook.setLayoutManager(manager);
-
-            }
-
-            @Override
-            public void onFailure(String errorResponseMessage) {
-
-            }
-        },3);
-    }
-
-    public void getCategoryPsychology(){
-        webServiceCaller.getBookByCategory(new IResponseListener() {
-            @Override
-            public void onSuccess(Object ResponseMessage) {
-                CategoryModel model = (CategoryModel) ResponseMessage;
-                List<Category> categoryList = model.getCategoryList();
-
-                CategoryAdapter adapter = new CategoryAdapter(categoryList,getApplicationContext(),
-                        SearchBookByCategoryActivity.this);
-
-                recyclerCategoryBook.setAdapter(adapter);
-
-                LinearLayoutManager manager =
-                        new LinearLayoutManager(getApplicationContext(),RecyclerView.VERTICAL,false);
-                recyclerCategoryBook.setLayoutManager(manager);
-
-            }
-
-            @Override
-            public void onFailure(String errorResponseMessage) {
-
-            }
-        },4);
+        img_back.setOnClickListener(view -> onBackPressed());
 
     }
+
 
     @Override
     public void Category(Category category) {
         Intent intent = new Intent(this, BookDetailActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("data",category);
-       startActivity(intent);
+        startActivity(intent);
     }
 }

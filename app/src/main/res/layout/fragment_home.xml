@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/refreshLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.HomeFragment">
 
+
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -17,14 +28,25 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="@color/white"
-        android:elevation="@dimen/margin_8">
+        android:background="@color/backGroundColor"
+        android:elevation="@dimen/margin_8"
+        >
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/fidibo_image"
             android:layout_gravity="center"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_baseline_nights_stay_24"/>
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switch_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     </androidx.appcompat.widget.Toolbar>
 
 
@@ -33,83 +55,165 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
-        android:elevation="@dimen/margin_8">
-
+        android:elevation="@dimen/margin_8"
+        app:tabTextAppearance="@style/MineCustomTabText"
+       >
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            >
+            android:text="other"
+            app:tabBackground="@color/black"
+            app:tabIndicatorColor="#00FFFFFF"
+            />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="همه"
+           >
 
         </com.google.android.material.tabs.TabItem>
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="همه" />
+
 
     </com.google.android.material.tabs.TabLayout>
 
-    <com.book.fidibo.customeview.PersianTextView
-        android:id="@+id/txt_programing"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_8"
-        android:text="برنامه نویسی"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tab_layout" />
+
+
+     <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constrain_programing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tab_layout">
+
+            <com.book.fidibo.customeview.PersianTextView
+                android:id="@+id/txt_programing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_8"
+                android:text="@string/txt_programing"
+                android:textColor="@color/txtColor"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="@dimen/margin_8"
+                android:background="@color/backGroundColor"
+                app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_programing"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        app:layout_constraintTop_toBottomOf="@id/txt_programing"
+        android:layoutDirection="rtl"
+        app:layout_constraintTop_toBottomOf="@id/constrain_programing"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
-    <com.book.fidibo.customeview.PersianTextView
-        android:id="@+id/txt_growUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="توسعه فردی"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/recycler_programing"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="@dimen/margin_8" />
 
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constrain_growUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recycler_programing">
+
+            <com.book.fidibo.customeview.PersianTextView
+                android:id="@+id/txt_growUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_8"
+                android:textColor="@color/txtColor"
+                android:text="توسعه فردی"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="@dimen/margin_8"
+                android:background="@color/backGroundColor"
+                app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_growUp"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        app:layout_constraintTop_toBottomOf="@id/txt_growUp"
+        android:layoutDirection="rtl"
+        app:layout_constraintTop_toBottomOf="@id/constrain_growUp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         />
 
 
-    <com.book.fidibo.customeview.PersianTextView
-        android:id="@+id/txt_psychology"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="روانشناسی"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/recycler_growUp"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="@dimen/margin_8" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constrain_psychology"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recycler_growUp">
+
+            <com.book.fidibo.customeview.PersianTextView
+                android:id="@+id/txt_psychology"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_8"
+                android:textColor="@color/txtColor"
+                android:text="روانشناسی"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="@dimen/margin_8"
+                android:background="@color/backGroundColor"
+                app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_psychology"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        app:layout_constraintTop_toBottomOf="@id/txt_psychology"
+        android:layoutDirection="rtl"
+        app:layout_constraintTop_toBottomOf="@id/constrain_psychology"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         />
+
+
+
 
         <com.book.fidibo.customeview.PersianTextView
             android:id="@+id/txt_publisher"
@@ -117,6 +221,7 @@
             android:layout_height="wrap_content"
             android:text="ناشران برتر"
             android:textSize="20sp"
+            android:textColor="@color/txtColor"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_margin="@dimen/margin_8"
             app:layout_constraintTop_toBottomOf="@id/recycler_psychology" />
@@ -144,6 +249,303 @@
             app:layout_constraintTop_toBottomOf="@id/txt_publisher" />
 
 
+        <com.book.fidibo.customeview.PersianTextView
+            android:id="@+id/txt_best_isue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_8"
+            android:layout_marginTop="15dp"
+            android:text="موضوعات پرطرفدار"
+            android:textSize="20sp"
+            android:textColor="@color/txtColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_publisher" />
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_novel"
+            android:layout_width="190dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="30dp"
+
+            app:layout_constraintTop_toBottomOf="@id/txt_best_isue">
+
+
+           <androidx.constraintlayout.widget.ConstraintLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent">
+
+
+               <androidx.appcompat.widget.AppCompatImageView
+                   android:id="@+id/img_novel"
+                   android:layout_width="match_parent"
+                   android:layout_height="80dp"
+                   app:srcCompat="@drawable/img_novel"
+                   android:scaleType="fitXY"
+                   app:layout_constraintBottom_toTopOf="@+id/txt_novel"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toTopOf="parent" />
+
+               <com.book.fidibo.customeview.PersianTextView
+                   android:id="@+id/txt_novel"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:text="رمان"
+                   android:textSize="20sp"
+                   android:textColor="@color/black"
+                   android:gravity="center"
+                   app:layout_constraintBottom_toBottomOf="parent"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toBottomOf="@+id/img_novel"
+                   android:background="@color/low_gray"/>
+
+           </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_marginTop="20dp"
+            android:id="@+id/card_gorw"
+            android:layout_width="190dp"
+            android:layout_height="100dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="30dp"
+            app:layout_constraintTop_toBottomOf="@id/txt_best_isue">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_growUp"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    app:srcCompat="@drawable/image_grow"
+                    android:scaleType="fitXY"
+                    app:layout_constraintBottom_toTopOf="@+id/txt_best_growUp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.book.fidibo.customeview.PersianTextView
+                    android:id="@+id/txt_best_growUp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="توسعه فردی"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/img_growUp"
+                    android:background="@color/low_gray"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_nagotiation"
+            android:layout_width="190dp"
+            android:layout_height="100dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="30dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/card_gorw">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_nagotiation"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    app:srcCompat="@drawable/img_bussiness"
+                    android:scaleType="fitXY"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.book.fidibo.customeview.PersianTextView
+                    android:id="@+id/txt_best_nagotiation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="مذاکره"
+                    android:textColor="@color/black"
+
+                    android:gravity="center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:background="@color/low_gray"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_programing"
+            android:layout_width="190dp"
+            android:layout_height="100dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="30dp"
+            app:layout_constraintTop_toBottomOf="@id/card_gorw">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_programing"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    app:srcCompat="@drawable/img_programing"
+                    android:scaleType="fitXY"
+                    app:layout_constraintBottom_toTopOf="@+id/txt_best_programing"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.book.fidibo.customeview.PersianTextView
+                    android:id="@+id/txt_best_programing"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="برنامه نویسی"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:background="@color/low_gray"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+        </androidx.cardview.widget.CardView>
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constrain_novel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_nagotiation">
+
+            <com.book.fidibo.customeview.PersianTextView
+                android:id="@+id/txt_novell"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_8"
+                android:textColor="@color/txtColor"
+                android:text="رمان"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="@dimen/margin_8"
+                app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_novel"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layoutDirection="rtl"
+            app:layout_constraintTop_toBottomOf="@id/constrain_novel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constrain_negotiation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recycler_novel">
+
+            <com.book.fidibo.customeview.PersianTextView
+                android:id="@+id/txt_negotiation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_8"
+                android:textColor="@color/txtColor"
+                android:text="مذاکره"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="@dimen/margin_8"
+                android:background="@color/backGroundColor"
+                app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_negotiation"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layoutDirection="rtl"
+            app:layout_constraintTop_toBottomOf="@id/constrain_negotiation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.core.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

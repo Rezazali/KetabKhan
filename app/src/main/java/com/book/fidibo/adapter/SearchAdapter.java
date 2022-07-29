@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder> implements Filterable {
+public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder>  {
 
     List<Category> searchList;
     Context context;
@@ -65,13 +65,18 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder> implem
         return searchList.size();
     }
 
-    @Override
+    public void filterList(List<Category> searchList){
+        searchList = searchList;
+        notifyDataSetChanged();
+    }
+
+   /* @Override
     public Filter getFilter() {
         return filterUSer;
     }
+*/
 
-
-    private Filter filterUSer = new Filter() {
+   /* private Filter filterUSer = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence charSequence) {
 
@@ -93,7 +98,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder> implem
 
             return results;
         }
-
+*//*
         @SuppressLint("NotifyDataSetChanged")
         @Override
         protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
@@ -102,6 +107,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder> implem
             notifyDataSetChanged();
 
         }
-    };
+    };*/
 
 }

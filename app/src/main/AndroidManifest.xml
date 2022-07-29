@@ -5,7 +5,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
         android:allowBackup="true"
@@ -19,6 +19,14 @@
         android:theme="@style/Theme.Fidibo"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".activity.ShowAllBookActivity"
+            android:exported="false"
+            android:label="@string/title_activity_show_all_book"
+            android:theme="@style/Theme.Fidibo.NoActionBar" />
+        <activity
+            android:name=".activity.PopularBookActivity"
+            android:exported="false" />
         <activity
             android:name=".activity.uiActivity.SearchViewActivity"
             android:exported="false" />

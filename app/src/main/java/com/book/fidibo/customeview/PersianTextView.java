@@ -11,7 +11,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 public class PersianTextView extends AppCompatTextView {
 
     private void setFont(@NonNull Context context){
-        Typeface typeface = Typeface.createFromAsset(context.getAssets(), "font/BNAZANIN.TTF");
+        Typeface typeface = Typeface.createFromAsset(context.getAssets(), "font/IRANSans_Bold.ttf");
         setTypeface(typeface);
     }
 
