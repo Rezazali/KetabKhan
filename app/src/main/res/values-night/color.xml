@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    
+    <color name="backGroundColor">#212121</color>
+    <color name="txtColor">#FFFFFFFF</color>
+
+    <color name="backGroundColorLow">#212121</color>
+
+    <color name="backGroundShape">#212121</color>
+
+</resources>
