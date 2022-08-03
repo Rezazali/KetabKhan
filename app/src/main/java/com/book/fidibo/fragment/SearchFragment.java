@@ -50,12 +50,14 @@ public class SearchFragment extends Fragment {
         webServiceCaller = new WebServiceCaller();
 
 
-        setToolbar(binding.toolbar);
+        setToolbar(binding.searchToolbar);
+
+
 
         Log.d("","");
 
 
-        binding.searchView.setOnClickListener(view -> {
+        binding.edtSearch.setOnClickListener(view -> {
             Intent intent = new Intent(getActivity(), SearchViewActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
@@ -69,10 +71,9 @@ public class SearchFragment extends Fragment {
                 CategoryModel model = (CategoryModel) ResponseMessage;
                 ArrayList<Category>categoryList = (ArrayList<Category>) model.getCategoryList();
 
-                Intent intent = new Intent(getActivity(),SearchBookByCategoryActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putParcelableArrayListExtra("data", categoryList);
-                startActivity(intent);
+                String title = "برنامه نویسی";
+
+                setIntent(categoryList,title);
             }
 
             @Override
@@ -82,6 +83,8 @@ public class SearchFragment extends Fragment {
         },2));
 
 
+
+
         binding.relGrowUp.setOnClickListener(view -> webServiceCaller.getBookByCategory(new IResponseListener() {
             @Override
             public void onSuccess(Object ResponseMessage) {
@@ -89,10 +92,9 @@ public class SearchFragment extends Fragment {
                 CategoryModel model = (CategoryModel) ResponseMessage;
                 ArrayList<Category>categoryList = (ArrayList<Category>) model.getCategoryList();
 
-                Intent intent = new Intent(getActivity(),SearchBookByCategoryActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putParcelableArrayListExtra("data", (ArrayList<? extends Parcelable>) categoryList);
-                startActivity(intent);
+                String title = "توسعه فردی";
+
+                setIntent(categoryList,title);
             }
 
             @Override
@@ -109,10 +111,9 @@ public class SearchFragment extends Fragment {
                 CategoryModel model = (CategoryModel) ResponseMessage;
                 ArrayList<Category>categoryList = (ArrayList<Category>) model.getCategoryList();
 
-                Intent intent = new Intent(getActivity(),SearchBookByCategoryActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putParcelableArrayListExtra("data", (ArrayList<? extends Parcelable>) categoryList);
-                startActivity(intent);
+                String title = "روانشناسی";
+
+                setIntent(categoryList,title);
             }
 
             @Override
@@ -129,10 +130,9 @@ public class SearchFragment extends Fragment {
                 CategoryModel model = (CategoryModel) ResponseMessage;
                 ArrayList<Category>categoryList = (ArrayList<Category>) model.getCategoryList();
 
-                Intent intent = new Intent(getActivity(),SearchBookByCategoryActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putParcelableArrayListExtra("data", (ArrayList<? extends Parcelable>) categoryList);
-                startActivity(intent);
+                String title = "رمان";
+
+                setIntent(categoryList,title);
             }
 
             @Override
@@ -149,10 +149,10 @@ public class SearchFragment extends Fragment {
                 CategoryModel model = (CategoryModel) ResponseMessage;
                 ArrayList<Category>categoryList = (ArrayList<Category>) model.getCategoryList();
 
-                Intent intent = new Intent(getActivity(),SearchBookByCategoryActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putParcelableArrayListExtra("data", (ArrayList<? extends Parcelable>) categoryList);
-                startActivity(intent);
+                String title = "مذاکره";
+
+                setIntent(categoryList,title);
+
             }
 
             @Override
@@ -172,6 +172,13 @@ public class SearchFragment extends Fragment {
     public void setToolbar(Toolbar toolbar){
         ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
     }
+    public void setIntent(ArrayList<Category>categoryList,String title){
 
+        Intent intent = new Intent(getActivity(),SearchBookByCategoryActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putParcelableArrayListExtra("data", (ArrayList<? extends Parcelable>) categoryList);
+        intent.putExtra("title",title);
+        startActivity(intent);
+    }
 
 }

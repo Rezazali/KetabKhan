@@ -3,7 +3,6 @@ package com.book.fidibo.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 
 import android.annotation.SuppressLint;
@@ -12,7 +11,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.text.Html;
 import android.text.Spanned;
 import android.util.Log;
@@ -20,27 +18,19 @@ import android.widget.Toast;
 
 
 import com.book.fidibo.adapter.BookByCategoryAdapter;
-import com.book.fidibo.adapter.CategoryAdapter;
-import com.book.fidibo.adapter.LibraryAdapter;
 import com.book.fidibo.database.AppDatabase;
 import com.book.fidibo.databinding.ActivityBookDetailBinding;
 import com.book.fidibo.models.Book;
 import com.book.fidibo.models.Category;
 import com.book.fidibo.models.objectModel.BookModel;
-import com.book.fidibo.models.objectModel.CategoryModel;
 import com.book.fidibo.requestBody.IResponseListener;
 import com.book.fidibo.requestBody.WebServiceCaller;
 import com.downloader.Error;
-import com.downloader.OnCancelListener;
 import com.downloader.OnDownloadListener;
-import com.downloader.OnPauseListener;
-import com.downloader.OnProgressListener;
 import com.downloader.OnStartOrResumeListener;
 import com.downloader.PRDownloader;
-import com.downloader.Progress;
 import com.squareup.picasso.Picasso;
 
-import java.io.File;
 import java.util.List;
 
 public class BookDetailActivity extends AppCompatActivity implements BookByCategoryAdapter.UserOnClickListener {
@@ -54,7 +44,7 @@ public class BookDetailActivity extends AppCompatActivity implements BookByCateg
     Category category;
 
     Book book;
-    /*List<Book> categoryList;*/
+
 
     WebServiceCaller webServiceCaller;
     @Override
@@ -62,9 +52,6 @@ public class BookDetailActivity extends AppCompatActivity implements BookByCateg
         super.onCreate(savedInstanceState);
         binding = ActivityBookDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-
-
 
         setSupportActionBar(binding.toolbar);
 

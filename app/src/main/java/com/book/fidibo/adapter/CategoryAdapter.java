@@ -53,7 +53,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> {
     @Override
     public CategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.book_library_model,null);
+        View view = inflater.inflate(R.layout.show_alll_book_model,null);
 
 
         return new CategoryViewHolder(view);
@@ -71,7 +71,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> {
         holder.txt_publisher.setText(category.getBookPublisher());
         Picasso.get().load(category.getBookThumbnailS()).into(holder.img_book);
 
-        holder.btn_more.setOnClickListener(new View.OnClickListener() {
+       /* holder.btn_more.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(context,R.style.BottomSheetDialogTheme);
@@ -85,7 +85,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> {
 
                 bottomSheetDialog.show();
             }
-        });
+        });*/
 
 
         holder.rel_book.setOnClickListener(new View.OnClickListener() {

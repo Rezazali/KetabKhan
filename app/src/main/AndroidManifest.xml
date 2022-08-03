@@ -20,6 +20,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".activity.FavoriteChooseActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.ShowAllBookActivity"
             android:exported="false"
             android:label="@string/title_activity_show_all_book"
@@ -36,11 +39,14 @@
         <activity
             android:name=".activity.BookDetailActivity"
             android:exported="false" />
+
         <activity
             android:name=".activity.uiActivity.SplashScreenActivity"
             android:exported="true">
+
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"
+                   />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -48,7 +54,11 @@
         <activity
             android:name=".activity.SearchBookByCategoryActivity"
             android:exported="false" />
-        <activity android:name=".MainActivity" />
+
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"
+            />
     </application>
 
 </manifest>

@@ -3,17 +3,16 @@ package com.book.fidibo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.fragment.app.Fragment;
 
-
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
 
+import android.os.Handler;
+import android.os.Looper;
 import android.view.WindowManager;
-import android.widget.CompoundButton;
+import android.widget.Toast;
 
-import com.book.fidibo.adapter.TabsAdapter;
 import com.book.fidibo.databinding.ActivityMainBinding;
 import com.book.fidibo.fragment.HomeFragment;
 import com.book.fidibo.fragment.LibraryFragment;
@@ -21,11 +20,8 @@ import com.book.fidibo.fragment.SearchFragment;
 import com.book.fidibo.fragment.SpecialFragment;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
-
 public class MainActivity extends AppCompatActivity {
+    boolean doubleBackToExitPressedOnce = false;
 
     ActivityMainBinding binding;
 
@@ -34,18 +30,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         //Secure for Create ScreenShot
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,
-                WindowManager.LayoutParams.FLAG_SECURE);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
+
         setContentView(binding.getRoot());
 
-       this.setClickMenu();
 
-       this.setBottomNav();
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); // Fixed portrait orientation
 
-       binding.viewPager.setCurrentItem(3);
-       binding.bottomNav.getMenu().findItem(R.id.bottom_home).setChecked(true);
+
+        this.setClickMenu();
+
+
+
+
+
+       getSupportFragmentManager().beginTransaction().replace(R.id.frame_container,new HomeFragment()).commit();
+        binding.bottomNav.getMenu().findItem(R.id.bottom_home).setChecked(true);
 
 
 
@@ -61,41 +62,44 @@ public class MainActivity extends AppCompatActivity {
            */
 
                 if(item.getItemId() == R.id.bottom_library){
-                    binding.viewPager.setCurrentItem(0);
+                    getSupportFragmentManager().beginTransaction().replace(R.id.frame_container,new LibraryFragment()).commit();
                     binding.bottomNav.getMenu().findItem(R.id.bottom_library).setChecked(true);
                     }
 
                 if(item.getItemId() == R.id.bottom_search) {
-                   binding.viewPager.setCurrentItem(1);
+                    getSupportFragmentManager().beginTransaction().replace(R.id.frame_container,new SearchFragment()).commit();
                    binding.bottomNav.getMenu().findItem(R.id.bottom_search).setChecked(true);
                 }
 
                if(item.getItemId() == R.id.bottom_special) {
-                   binding.viewPager.setCurrentItem(2);
+                   getSupportFragmentManager().beginTransaction().replace(R.id.frame_container,new SpecialFragment()).commit();
                    binding.bottomNav.getMenu().findItem(R.id.bottom_special).setChecked(true);
                }
 
                if(item.getItemId() == R.id.bottom_home) {
-                   binding.viewPager.setCurrentItem(3);
+                   getSupportFragmentManager().beginTransaction().replace(R.id.frame_container,new HomeFragment()).commit();
                    binding.bottomNav.getMenu().findItem(R.id.bottom_home).setChecked(true);
                }
-
             return false;
         });
 
     }
 
-    public void setBottomNav(){
-
-        List<Fragment>fragmentList = new ArrayList<>();
-        fragmentList.add(new LibraryFragment());
-        fragmentList.add(new SearchFragment());
-        fragmentList.add(new SpecialFragment());
-        fragmentList.add(new HomeFragment());
+    @Override
+    public void onBackPressed() {
 
 
-        TabsAdapter adapter = new TabsAdapter(MainActivity.this,fragmentList);
-        binding.viewPager.setAdapter(adapter);
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            finishAffinity();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "لطفا دوبار کلیک فرمایید", Toast.LENGTH_SHORT).show();
+
+        new Handler(Looper.getMainLooper()).postDelayed(() -> doubleBackToExitPressedOnce=false, 2000);
     }
+
 
 }

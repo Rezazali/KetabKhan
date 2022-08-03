@@ -66,7 +66,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder>  {
     }
 
     public void filterList(List<Category> searchList){
-        searchList = searchList;
+        this.searchList = searchList;
         notifyDataSetChanged();
     }
 

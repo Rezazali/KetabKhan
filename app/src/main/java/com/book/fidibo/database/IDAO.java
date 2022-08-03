@@ -15,18 +15,24 @@ public interface IDAO {
     @Insert
     long insert (Category category);
 
+    @Insert
+    void insertList (List<Category> category);
+
+
     @Query("select * from tbl_book")
     List<Category> categoryList();
+
 
     @Update
     void update(Category category);
 
-    @Query("SELECT EXISTS(SELECT * FROM tbl_book where id = :categoryId)")
+    @Query("SELECT EXISTS( SELECT* FROM tbl_book where id = :categoryId)")
     boolean isRowIsExist(int categoryId);
 
 
     @Query("delete from tbl_book where id = :categoryId")
     void deleteVideo(int categoryId);
+
 
 
 }

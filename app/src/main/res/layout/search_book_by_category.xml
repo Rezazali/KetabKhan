@@ -28,9 +28,11 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
+                android:gravity="center"
+                android:textSize="20sp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:textColor="@color/black" />
+                android:textColor="@color/txtColor" />
 
 
             <androidx.appcompat.widget.AppCompatImageView

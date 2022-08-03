@@ -2,6 +2,7 @@ package com.book.fidibo.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,6 +29,7 @@ public class SearchBookByCategoryActivity extends AppCompatActivity implements C
 
     RecyclerView recyclerCategoryBook;
     AppCompatImageView img_back;
+    AppCompatTextView txt_title;
 
     List<Category> category;
     @Override
@@ -38,10 +40,14 @@ public class SearchBookByCategoryActivity extends AppCompatActivity implements C
 
         recyclerCategoryBook = findViewById(R.id.recyclerCategoryBook);
         img_back = findViewById(R.id.img_back);
+        txt_title = findViewById(R.id.txt_title_toolbar);
 
+        String title = getIntent().getStringExtra("title");
 
         Log.d("","");
         category = getIntent().getParcelableArrayListExtra("data");
+
+        txt_title.setText(title);
 
 
         CategoryAdapter categoryAdapter = new CategoryAdapter(category,SearchBookByCategoryActivity.this,SearchBookByCategoryActivity.this);

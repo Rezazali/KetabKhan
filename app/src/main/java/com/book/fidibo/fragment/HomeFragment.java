@@ -16,6 +16,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Parcelable;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,8 +27,9 @@ import com.book.fidibo.R;
 import com.book.fidibo.activity.BookDetailActivity;
 import com.book.fidibo.activity.PopularBookActivity;
 
+import com.book.fidibo.activity.SearchBookByCategoryActivity;
 import com.book.fidibo.activity.ShowAllBookActivity;
-import com.book.fidibo.adapter.LibraryAdapter;
+import com.book.fidibo.adapter.HomeAdapter;
 import com.book.fidibo.databinding.FragmentHomeBinding;
 
 import com.book.fidibo.models.Category;
@@ -40,10 +43,12 @@ import java.util.List;
 import java.util.Objects;
 
 
-public class HomeFragment extends Fragment implements LibraryAdapter.UserOnClickListener {
+public class HomeFragment extends Fragment implements HomeAdapter.UserOnClickListener {
 
     FragmentHomeBinding binding;
     WebServiceCaller webServiceCaller;
+    private long mLastClickTime = 0;
+
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -53,7 +58,59 @@ public class HomeFragment extends Fragment implements LibraryAdapter.UserOnClick
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         binding = FragmentHomeBinding.inflate(getLayoutInflater());
+/*
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+*/
+        binding.setVisibility.setVisibility(View.GONE);
+        darkNight();
+        webServiceCaller = new WebServiceCaller();
+        getCategoryPrograming();
+        getCategoryGrowUp();
+        getCategoryPsychology();
+        getCategoryNovel();
+        getCategoryNegotiation();
+
+
+
+        binding.imgPublisher.setOnClickListener(view -> webServiceCaller.getBookByCategory(new IResponseListener() {
+            @Override
+            public void onSuccess(Object ResponseMessage) {
+                CategoryModel model = (CategoryModel) ResponseMessage;
+                ArrayList<Category>categoryList = (ArrayList<Category>) model.getCategoryList();
+                String title = "انتشارات آکسفورد";
+                Intent intent = new Intent(getActivity(), SearchBookByCategoryActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putParcelableArrayListExtra("data", (ArrayList<? extends Parcelable>) categoryList);
+                intent.putExtra("title",title);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onFailure(String errorResponseMessage) {
+
+            }
+        },7));
+
+        binding.imgPublisher2.setOnClickListener(view -> webServiceCaller.getBookByCategory(new IResponseListener() {
+            @Override
+            public void onSuccess(Object ResponseMessage) {
+                CategoryModel model = (CategoryModel) ResponseMessage;
+                ArrayList<Category>categoryList = (ArrayList<Category>) model.getCategoryList();
+                String title = "انتشارات کیان";
+                Intent intent = new Intent(getActivity(), SearchBookByCategoryActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putParcelableArrayListExtra("data", (ArrayList<? extends Parcelable>) categoryList);
+                intent.putExtra("title",title);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onFailure(String errorResponseMessage) {
+
+            }
+        },2));
 
 
         binding.constrainPrograming.setOnClickListener(view -> webServiceCaller.getBookByCategory(new IResponseListener() {
@@ -64,10 +121,8 @@ public class HomeFragment extends Fragment implements LibraryAdapter.UserOnClick
                 CategoryModel categoryModel = (CategoryModel) ResponseMessage;
                 ArrayList<Category>categoryList = (ArrayList<Category>) categoryModel.getCategoryList();
 
-                Intent intent = new Intent(getActivity(), ShowAllBookActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("data",categoryList);
-                startActivity(intent);
+                String title = "برنامه نویسی";
+                setIntentShowMore(categoryList,title);
             }
 
             @Override
@@ -84,10 +139,9 @@ public class HomeFragment extends Fragment implements LibraryAdapter.UserOnClick
                 CategoryModel categoryModel = (CategoryModel) ResponseMessage;
                 ArrayList<Category>categoryList = (ArrayList<Category>) categoryModel.getCategoryList();
 
-                Intent intent = new Intent(getActivity(), ShowAllBookActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("data",categoryList);
-                startActivity(intent);
+                String title = "توسعه فردی";
+                setIntentShowMore(categoryList,title);
+
             }
 
             @Override
@@ -104,10 +158,9 @@ public class HomeFragment extends Fragment implements LibraryAdapter.UserOnClick
                 CategoryModel categoryModel = (CategoryModel) ResponseMessage;
                 ArrayList<Category>categoryList = (ArrayList<Category>) categoryModel.getCategoryList();
 
-                Intent intent = new Intent(getActivity(), ShowAllBookActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("data",categoryList);
-                startActivity(intent);
+                String title = "روانشناسی";
+                setIntentShowMore(categoryList,title);
+
             }
 
             @Override
@@ -120,14 +173,15 @@ public class HomeFragment extends Fragment implements LibraryAdapter.UserOnClick
             @Override
             public void onSuccess(Object ResponseMessage) {
 
+                CategoryModel model = (CategoryModel) ResponseMessage;
+                List<Category> categoryList2 = model.getCategoryList();
 
                 CategoryModel categoryModel = (CategoryModel) ResponseMessage;
                 ArrayList<Category>categoryList = (ArrayList<Category>) categoryModel.getCategoryList();
 
-                Intent intent = new Intent(getActivity(), ShowAllBookActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("data",categoryList);
-                startActivity(intent);
+                String title = "رمان";
+                setIntentShowMore(categoryList,title);
+
             }
 
             @Override
@@ -144,10 +198,9 @@ public class HomeFragment extends Fragment implements LibraryAdapter.UserOnClick
                 CategoryModel categoryModel = (CategoryModel) ResponseMessage;
                 ArrayList<Category>categoryList = (ArrayList<Category>) categoryModel.getCategoryList();
 
-                Intent intent = new Intent(getActivity(), ShowAllBookActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("data",categoryList);
-                startActivity(intent);
+                String title = "مذاکره";
+                setIntentShowMore(categoryList,title);
+
             }
 
             @Override
@@ -166,120 +219,91 @@ public class HomeFragment extends Fragment implements LibraryAdapter.UserOnClick
 
 
 
-        binding.cardGorw.setOnClickListener(new View.OnClickListener() {
+        binding.cardGorw.setOnClickListener(view -> webServiceCaller.getBookByCategory(new IResponseListener() {
             @Override
-            public void onClick(View view) {
+            public void onSuccess(Object ResponseMessage) {
 
-                webServiceCaller.getBookByCategory(new IResponseListener() {
-                    @Override
-                    public void onSuccess(Object ResponseMessage) {
+                CategoryModel categoryModel = (CategoryModel) ResponseMessage;
+                ArrayList<Category>categoryList = (ArrayList<Category>) categoryModel.getCategoryList();
 
-                        CategoryModel categoryModel = (CategoryModel) ResponseMessage;
-                        ArrayList<Category>categoryList = (ArrayList<Category>) categoryModel.getCategoryList();
-
-                        Intent intent = new Intent(getActivity(),PopularBookActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        intent.putParcelableArrayListExtra("data", categoryList);
-                        startActivity(intent);
+                String title = "توسعه فردی";
 
 
-                    }
-
-                    @Override
-                    public void onFailure(String errorResponseMessage) {
-
-                    }
-                },3);
+                setIntentPopular(categoryList,title);
 
             }
-        });
 
-
-        binding.cardNovel.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-
-                webServiceCaller.getBookByCategory(new IResponseListener() {
-                    @Override
-                    public void onSuccess(Object ResponseMessage) {
-
-                        CategoryModel categoryModel = (CategoryModel) ResponseMessage;
-                        ArrayList<Category>categoryList = (ArrayList<Category>) categoryModel.getCategoryList();
-
-                        Intent intent = new Intent(getActivity(),PopularBookActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        intent.putParcelableArrayListExtra("data", categoryList);
-                        startActivity(intent);
-
-
-                    }
-
-                    @Override
-                    public void onFailure(String errorResponseMessage) {
-
-                    }
-                },5);
+            public void onFailure(String errorResponseMessage) {
 
             }
-        });
+        },3));
 
 
-        binding.cardPrograming.setOnClickListener(new View.OnClickListener() {
+        binding.cardNovel.setOnClickListener(view -> webServiceCaller.getBookByCategory(new IResponseListener() {
             @Override
-            public void onClick(View view) {
+            public void onSuccess(Object ResponseMessage) {
 
-                webServiceCaller.getBookByCategory(new IResponseListener() {
-                    @Override
-                    public void onSuccess(Object ResponseMessage) {
+                CategoryModel categoryModel = (CategoryModel) ResponseMessage;
+                ArrayList<Category>categoryList = (ArrayList<Category>) categoryModel.getCategoryList();
 
-                        CategoryModel categoryModel = (CategoryModel) ResponseMessage;
-                        ArrayList<Category>categoryList = (ArrayList<Category>) categoryModel.getCategoryList();
-
-                        Intent intent = new Intent(getActivity(),PopularBookActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        intent.putParcelableArrayListExtra("data", categoryList);
-                        startActivity(intent);
+                String title = "رمان";
 
 
-                    }
+                setIntentPopular(categoryList,title);
 
-                    @Override
-                    public void onFailure(String errorResponseMessage) {
-
-                    }
-                },2);
 
             }
-        });
 
-
-        binding.cardNagotiation.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-
-                webServiceCaller.getBookByCategory(new IResponseListener() {
-                    @Override
-                    public void onSuccess(Object ResponseMessage) {
-
-                        CategoryModel categoryModel = (CategoryModel) ResponseMessage;
-                        ArrayList<Category>categoryList = (ArrayList<Category>) categoryModel.getCategoryList();
-
-                        Intent intent = new Intent(getActivity(),PopularBookActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        intent.putParcelableArrayListExtra("data", categoryList);
-                        startActivity(intent);
-
-
-                    }
-
-                    @Override
-                    public void onFailure(String errorResponseMessage) {
-
-                    }
-                },6);
+            public void onFailure(String errorResponseMessage) {
 
             }
-        });
+        },5));
+
+
+        binding.cardPrograming.setOnClickListener(view -> webServiceCaller.getBookByCategory(new IResponseListener() {
+            @Override
+            public void onSuccess(Object ResponseMessage) {
+
+                CategoryModel categoryModel = (CategoryModel) ResponseMessage;
+                ArrayList<Category>categoryList = (ArrayList<Category>) categoryModel.getCategoryList();
+
+                String title = "برنامه نویسی";
+
+
+                setIntentPopular(categoryList,title);
+
+
+            }
+
+            @Override
+            public void onFailure(String errorResponseMessage) {
+
+            }
+        },2));
+
+
+        binding.cardNagotiation.setOnClickListener(view -> webServiceCaller.getBookByCategory(new IResponseListener() {
+            @Override
+            public void onSuccess(Object ResponseMessage) {
+
+                CategoryModel categoryModel = (CategoryModel) ResponseMessage;
+                ArrayList<Category>categoryList = (ArrayList<Category>) categoryModel.getCategoryList();
+
+                String title = "مذاکره";
+
+
+               setIntentPopular(categoryList,title);
+
+
+            }
+
+            @Override
+            public void onFailure(String errorResponseMessage) {
+
+            }
+        },6));
 
 
         setToolbar(binding.toolbar);
@@ -287,11 +311,7 @@ public class HomeFragment extends Fragment implements LibraryAdapter.UserOnClick
 
 
 
-        getCategoryPrograming();
-        getCategoryGrowUp();
-        getCategoryPsychology();
-        getCategoryNovel();
-        getCategoryNegotiation();
+
 
 
         requireActivity().getWindow().setAllowEnterTransitionOverlap(false);
@@ -311,13 +331,18 @@ public class HomeFragment extends Fragment implements LibraryAdapter.UserOnClick
 
         Objects.requireNonNull(binding.tabLayout.getTabAt(1)).select();
 
-       /* binding.refreshLayout.setOnRefreshListener(() -> {
+        binding.refreshLayout.setOnRefreshListener(() -> {
+
+                getActivity().finish();
+                getActivity().overridePendingTransition(0, 0);
+                getActivity().startActivity(getActivity().getIntent());
+                getActivity().overridePendingTransition(0, 0);
 
             binding.refreshLayout.setRefreshing(false);
-        });*/
+        });
 
 
-        darkNight();
+
 
 
         return binding.getRoot();
@@ -327,19 +352,19 @@ public class HomeFragment extends Fragment implements LibraryAdapter.UserOnClick
 
     public void getCategoryPrograming(){
 
-        webServiceCaller = new WebServiceCaller();
+
 
         webServiceCaller.getBookByCategory(new IResponseListener() {
             @Override
             public void onSuccess(Object ResponseMessage) {
-
+                binding.setVisibility.setVisibility(View.VISIBLE);
+                binding.progressbar.setVisibility(View.GONE);
                 ///cleanUp with interface
                 Log.d("","");
                 CategoryModel model = (CategoryModel) ResponseMessage;
                 List<Category> categoryList = model.getCategoryList();
 
-
-                LibraryAdapter adapter = new LibraryAdapter(categoryList,getActivity(),HomeFragment.this::onClick);
+                HomeAdapter adapter = new HomeAdapter(categoryList,getActivity(),HomeFragment.this::onClick);
 
                 binding.recyclerPrograming.setAdapter(adapter);
 
@@ -352,6 +377,11 @@ public class HomeFragment extends Fragment implements LibraryAdapter.UserOnClick
 
             @Override
             public void onFailure(String errorResponseMessage) {
+                /*binding.setVisibility.setVisibility(View.GONE);*/
+                Snackbar snackbar = Snackbar.make(requireView(),"اینترنت خود را چک نمایید",Snackbar.LENGTH_LONG);
+                snackbar.show();
+                binding.noConnection.setVisibility(View.GONE);
+                binding.setVisibility.setVisibility(View.GONE);
 
             }
         },2);
@@ -372,7 +402,7 @@ public class HomeFragment extends Fragment implements LibraryAdapter.UserOnClick
                 List<Category> categoryList = model.getCategoryList();
 
 
-                LibraryAdapter adapter = new LibraryAdapter(categoryList,getActivity(),HomeFragment.this::onClick);
+                HomeAdapter adapter = new HomeAdapter(categoryList,getActivity(),HomeFragment.this::onClick);
 
                 binding.recyclerGrowUp.setAdapter(adapter);
 
@@ -394,7 +424,7 @@ public class HomeFragment extends Fragment implements LibraryAdapter.UserOnClick
             @Override
             public void onSuccess(Object ResponseMessage) {
 
-                binding.txtPsychology.setVisibility(View.VISIBLE);
+                binding.setVisibility.setVisibility(View.VISIBLE);
 
 
                 ///cleanUp with interface
@@ -402,7 +432,7 @@ public class HomeFragment extends Fragment implements LibraryAdapter.UserOnClick
                 List<Category> categoryList = model.getCategoryList();
 
 
-                LibraryAdapter adapter = new LibraryAdapter(categoryList,getActivity(),HomeFragment.this::onClick);
+                HomeAdapter adapter = new HomeAdapter(categoryList,getActivity(),HomeFragment.this::onClick);
 
                 binding.recyclerPsychology.setAdapter(adapter);
 
@@ -436,7 +466,7 @@ public class HomeFragment extends Fragment implements LibraryAdapter.UserOnClick
                 List<Category> categoryList = model.getCategoryList();
 
 
-                LibraryAdapter adapter = new LibraryAdapter(categoryList,getActivity(),HomeFragment.this::onClick);
+                HomeAdapter adapter = new HomeAdapter(categoryList,getActivity(),HomeFragment.this::onClick);
 
                 binding.recyclerNovel.setAdapter(adapter);
 
@@ -448,8 +478,7 @@ public class HomeFragment extends Fragment implements LibraryAdapter.UserOnClick
             @Override
             public void onFailure(String errorResponseMessage) {
                 /* isConnected(false);*/
-                Snackbar snackbar = Snackbar.make(requireView(),"connect internet plase",Snackbar.LENGTH_LONG);
-                snackbar.show();
+
 
 
             }
@@ -470,7 +499,7 @@ public class HomeFragment extends Fragment implements LibraryAdapter.UserOnClick
                 List<Category> categoryList = model.getCategoryList();
 
 
-                LibraryAdapter adapter = new LibraryAdapter(categoryList,getActivity(),HomeFragment.this::onClick);
+                HomeAdapter adapter = new HomeAdapter(categoryList,getActivity(),HomeFragment.this::onClick);
 
                 binding.recyclerNegotiation.setAdapter(adapter);
 
@@ -555,6 +584,14 @@ public class HomeFragment extends Fragment implements LibraryAdapter.UserOnClick
                     {
                         // When user taps the enable/disable
                         // dark mode button
+                        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                            return;
+                        }
+                        mLastClickTime = SystemClock.elapsedRealtime();
+
+                        binding.switchColor.setEnabled(false);
+
+
                         if (isDarkModeOn) {
 
                             // if dark mode is on it
@@ -571,7 +608,7 @@ public class HomeFragment extends Fragment implements LibraryAdapter.UserOnClick
 
                             // change text of Button
                             binding.switchColor.setChecked(
-                                    false);
+                                    true);
                         }
                         else {
 
@@ -590,8 +627,11 @@ public class HomeFragment extends Fragment implements LibraryAdapter.UserOnClick
 
                             // change text of Button
                             binding.switchColor.setChecked(
-                                    true);
+                                    false);
                         }
+
+
+
                     }
                 });
 
@@ -604,6 +644,22 @@ public class HomeFragment extends Fragment implements LibraryAdapter.UserOnClick
         Intent intent = new Intent(getActivity(), BookDetailActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("data",category);
+        startActivity(intent);
+    }
+
+    public void setIntentShowMore(ArrayList<Category>categoryList,String title){
+        Intent intent = new Intent(getActivity(), ShowAllBookActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("data",categoryList);
+        intent.putExtra("title",title);
+        startActivity(intent);
+    }
+
+    public void setIntentPopular(ArrayList<Category>categoryList,String title){
+        Intent intent = new Intent(getActivity(),PopularBookActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putParcelableArrayListExtra("data", categoryList);
+        intent.putExtra("title", title);
         startActivity(intent);
     }
 }

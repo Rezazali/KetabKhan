@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 
 import com.book.fidibo.activity.BookDetailActivity;
 import com.book.fidibo.adapter.SearchAdapter;
@@ -34,6 +35,7 @@ public class SearchViewActivity extends AppCompatActivity implements SearchAdapt
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         binding =
                 ActivitySearchViewBinding.
                         inflate(getLayoutInflater());
@@ -44,6 +46,8 @@ public class SearchViewActivity extends AppCompatActivity implements SearchAdapt
 
         webServiceCaller =
                 new WebServiceCaller();
+
+        binding.searchToolbar.getChildAt(0).setOnClickListener(view -> onBackPressed());
 
     /*    binding.searchView.clearFocus();
         binding.searchView.setActivated(true);
@@ -86,7 +90,7 @@ public class SearchViewActivity extends AppCompatActivity implements SearchAdapt
             }
         });
 
-        binding.searchView.addTextChangedListener(new TextWatcher() {
+        binding.edtSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 

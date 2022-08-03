@@ -15,6 +15,10 @@
 
     <color name="backGroundColor">#FFFFFFFF</color>
 
+    <color name="backGroundShape">#EEEEEE</color>
+
+    <color name="backGroundColorLow">#F3EBEB</color>
+
     <color name="txtColor">#000000</color>
 
 </resources>

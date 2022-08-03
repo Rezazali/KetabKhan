@@ -8,8 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
+import android.widget.ImageView;
 
 import com.book.fidibo.R;
 import com.book.fidibo.activity.BookDetailActivity;
@@ -39,6 +38,7 @@ public class LibraryFragment extends Fragment implements CategoryAdapter.UserOnC
 
     FragmentLibrayBinding binding;
     AppDatabase appDatabase;
+
     public LibraryFragment() {
         // Required empty public constructor
     }
@@ -49,21 +49,6 @@ public class LibraryFragment extends Fragment implements CategoryAdapter.UserOnC
         // Inflate the layout for this fragment
         binding = FragmentLibrayBinding.inflate(getLayoutInflater());
 
-
- /*        AppCompatButton btn =requireActivity().findViewById(R.id.btn_more);
-
-         btn.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View view) {
-                 BottomSheetDialog dialog = new BottomSheetDialog(getActivity(),R.style.BottomSheetDialogTheme);
-                 View view1 = LayoutInflater.from(getActivity()).inflate(R.layout.layout_bottom_sheet,null);
-                 dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-
-                 dialog.setContentView(view1);
-
-                 dialog.show();
-             }
-         });*/
 
 
 
@@ -81,14 +66,8 @@ public class LibraryFragment extends Fragment implements CategoryAdapter.UserOnC
         super.onViewCreated(view, savedInstanceState);
 
 
-
-
     }
 
-  /*  @Override
-    public void Category(Category category) {
-
-    }*/
 
     public void setToolbar(Toolbar toolbar){
         ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
@@ -103,12 +82,7 @@ public class LibraryFragment extends Fragment implements CategoryAdapter.UserOnC
 
 
     public void setBottomSheet(){
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        CategoryAdapter adapter = new CategoryAdapter(appDatabase.idao().categoryList(),getActivity(), this);
+        LibraryAdapter adapter = new LibraryAdapter(appDatabase.idao().categoryList(),getActivity(), this);
         binding.recyclerLibrary.setAdapter(adapter);
 
 
@@ -117,12 +91,56 @@ public class LibraryFragment extends Fragment implements CategoryAdapter.UserOnC
         binding.recyclerLibrary.setLayoutManager(manager);
     }
 
+
     @Override
-    public void Category(Category category) {
-        Intent intent = new Intent(getActivity(), PdfBookActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra("data",category);
-        startActivity(intent);
+    public void onResume() {
+        super.onResume();
+
+      setBottomSheet();
+
+
+    }
+
+    @Override
+    public void Category(@NonNull Category category) {
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(getActivity(), R.style.BottomSheetDialogTheme);
+        View view1 = LayoutInflater.from(getActivity())
+                .inflate(R.layout.layout_bottom_sheet,null);
+        bottomSheetDialog.setContentView(view1);
+
+        Picasso.get().load(category.getBookThumbnailS()).into((ImageView) view1.findViewById(R.id.img_bottom_sheet));
+        AppCompatTextView txt_title  =view1.findViewById(R.id.txt_title_bottom_sheet);
+        AppCompatTextView txt_publisher  =view1.findViewById(R.id.txt_publisher_bottom_sheet);
+        AppCompatTextView txt_info_bottom_sheet  =view1.findViewById(R.id.txt_information_bottom_sheet);
+        AppCompatTextView txt_delete_book  =view1.findViewById(R.id.txt_delete_book);
+
+        txt_title.setText(category.getBookTitle());
+        txt_publisher.setText(category.getBookPublisher());
+
+        txt_info_bottom_sheet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), BookDetailActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("data",category);
+                startActivity(intent);
+            }
+        });
+
+        txt_delete_book.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                appDatabase.idao().deleteVideo(Integer.parseInt(category.getId()));
+                setBottomSheet();
+             /*   getActivity().finish();
+                getActivity().overridePendingTransition(0, 0);
+                getActivity().startActivity(getActivity().getIntent());
+                getActivity().overridePendingTransition(0, 0);*/
+            }
+        });
+
+        bottomSheetDialog.show();
     }
 }
 

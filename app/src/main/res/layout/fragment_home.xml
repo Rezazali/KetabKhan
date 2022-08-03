@@ -9,7 +9,6 @@
 
 
 
-
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -18,8 +17,30 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/setVisibility">
 
+        <ProgressBar
+            android:id="@+id/progressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="350dp"
+            android:visibility="visible"
+            />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/no_connection"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="250dp"
+            android:visibility="invisible"
+            app:lottie_rawRes="@raw/no_internet_connection"/>
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -62,7 +83,7 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="other"
+            android:text="پادکست"
             app:tabBackground="@color/black"
             app:tabIndicatorColor="#00FFFFFF"
             />
@@ -85,6 +106,7 @@
             android:id="@+id/constrain_programing"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_8"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tab_layout">
@@ -94,6 +116,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_8"
+                android:layout_marginEnd="10dp"
                 android:text="@string/txt_programing"
                 android:textColor="@color/txtColor"
                 android:textSize="20sp"
@@ -105,7 +128,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginStart="@dimen/margin_8"
+                android:layout_marginStart="15dp"
                 android:background="@color/backGroundColor"
                 app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24"
                 app:layout_constraintStart_toStartOf="parent"/>
@@ -116,8 +139,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_programing"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="160dp"
         android:layoutDirection="rtl"
+        android:background="@drawable/book_shape"
         app:layout_constraintTop_toBottomOf="@id/constrain_programing"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
@@ -129,6 +153,7 @@
             android:id="@+id/constrain_growUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_8"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/recycler_programing">
@@ -149,7 +174,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginStart="@dimen/margin_8"
+                android:layout_marginStart="15dp"
                 android:background="@color/backGroundColor"
                 app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24"
                 app:layout_constraintStart_toStartOf="parent"/>
@@ -160,8 +185,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_growUp"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="160dp"
         android:layoutDirection="rtl"
+        android:background="@drawable/book_shape"
         app:layout_constraintTop_toBottomOf="@id/constrain_growUp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -174,6 +200,7 @@
             android:id="@+id/constrain_psychology"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_8"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/recycler_growUp">
@@ -194,7 +221,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginStart="@dimen/margin_8"
+                android:layout_marginStart="15dp"
                 android:background="@color/backGroundColor"
                 app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24"
                 app:layout_constraintStart_toStartOf="parent"/>
@@ -205,8 +232,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_psychology"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="160dp"
         android:layoutDirection="rtl"
+        android:background="@drawable/book_shape"
         app:layout_constraintTop_toBottomOf="@id/constrain_psychology"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -222,32 +250,41 @@
             android:text="ناشران برتر"
             android:textSize="20sp"
             android:textColor="@color/txtColor"
+            android:layout_marginTop="@dimen/margin_8"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_margin="@dimen/margin_8"
             app:layout_constraintTop_toBottomOf="@id/recycler_psychology" />
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/img_publisher1"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
-            android:src="@drawable/fidibo_image"
-            app:civ_border_color="@color/white"
-            app:civ_border_width="2dp"
-            android:layout_marginStart="50dp"
+            android:id="@+id/img_publisher2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="56dp"
+            android:src="@drawable/kian"
+            app:civ_border_width="1dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txt_publisher" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/img_publisher"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
-            android:src="@drawable/fidibo_image"
-            app:civ_border_color="@color/white"
-            app:civ_border_width="2dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/oxford"
+            app:civ_border_width="1dp"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="50dp"
             app:layout_constraintTop_toBottomOf="@id/txt_publisher" />
 
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constrain_box"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_publisher"
+            android:background="@drawable/book_shape">
 
         <com.book.fidibo.customeview.PersianTextView
             android:id="@+id/txt_best_isue"
@@ -259,54 +296,54 @@
             android:textSize="20sp"
             android:textColor="@color/txtColor"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/img_publisher" />
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+
+
 
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_novel"
-            android:layout_width="190dp"
+            android:layout_width="170dp"
             android:layout_height="100dp"
             android:layout_marginTop="20dp"
+            android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="30dp"
 
             app:layout_constraintTop_toBottomOf="@id/txt_best_isue">
 
 
-           <androidx.constraintlayout.widget.ConstraintLayout
-               android:layout_width="match_parent"
-               android:layout_height="match_parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
 
-               <androidx.appcompat.widget.AppCompatImageView
-                   android:id="@+id/img_novel"
-                   android:layout_width="match_parent"
-                   android:layout_height="80dp"
-                   app:srcCompat="@drawable/img_novel"
-                   android:scaleType="fitXY"
-                   app:layout_constraintBottom_toTopOf="@+id/txt_novel"
-                   app:layout_constraintEnd_toEndOf="parent"
-                   app:layout_constraintStart_toStartOf="parent"
-                   app:layout_constraintTop_toTopOf="parent" />
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_novel"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:scaleType="fitXY"
+                    app:layout_constraintBottom_toTopOf="@+id/txt_novel"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/img_novel" />
 
-               <com.book.fidibo.customeview.PersianTextView
-                   android:id="@+id/txt_novel"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:text="رمان"
-                   android:textSize="20sp"
-                   android:textColor="@color/black"
-                   android:gravity="center"
-                   app:layout_constraintBottom_toBottomOf="parent"
-                   app:layout_constraintEnd_toEndOf="parent"
-                   app:layout_constraintStart_toStartOf="parent"
-                   app:layout_constraintTop_toBottomOf="@+id/img_novel"
-                   android:background="@color/low_gray"/>
+                <com.book.fidibo.customeview.PersianTextView
+                    android:id="@+id/txt_novel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/low_gray"
+                    android:gravity="center"
+                    android:text="رمان"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/img_novel" />
 
-           </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         </androidx.cardview.widget.CardView>
@@ -315,10 +352,10 @@
         <androidx.cardview.widget.CardView
             android:layout_marginTop="20dp"
             android:id="@+id/card_gorw"
-            android:layout_width="190dp"
+            android:layout_width="170dp"
             android:layout_height="100dp"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="30dp"
+            android:layout_marginStart="8dp"
             app:layout_constraintTop_toBottomOf="@id/txt_best_isue">
 
 
@@ -330,7 +367,7 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/img_growUp"
                     android:layout_width="match_parent"
-                    android:layout_height="80dp"
+                    android:layout_height="0dp"
                     app:srcCompat="@drawable/image_grow"
                     android:scaleType="fitXY"
                     app:layout_constraintBottom_toTopOf="@+id/txt_best_growUp"
@@ -362,10 +399,10 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_nagotiation"
-            android:layout_width="190dp"
+            android:layout_width="170dp"
             android:layout_height="100dp"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="30dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginTop="10dp"
             app:layout_constraintTop_toBottomOf="@id/card_gorw">
 
@@ -409,11 +446,11 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_programing"
-            android:layout_width="190dp"
+            android:layout_width="170dp"
             android:layout_height="100dp"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="10dp"
-            android:layout_marginStart="30dp"
+            android:layout_marginStart="8dp"
             app:layout_constraintTop_toBottomOf="@id/card_gorw">
 
 
@@ -454,15 +491,16 @@
 
         </androidx.cardview.widget.CardView>
 
-
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constrain_novel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_8"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/card_nagotiation">
+            app:layout_constraintTop_toBottomOf="@id/constrain_box">
 
             <com.book.fidibo.customeview.PersianTextView
                 android:id="@+id/txt_novell"
@@ -480,7 +518,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginStart="@dimen/margin_8"
+                android:layout_marginStart="15dp"
                 app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24"
                 app:layout_constraintStart_toStartOf="parent"/>
 
@@ -490,8 +528,9 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_novel"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="160dp"
             android:layoutDirection="rtl"
+            android:background="@drawable/book_shape"
             app:layout_constraintTop_toBottomOf="@id/constrain_novel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
@@ -504,6 +543,7 @@
             android:id="@+id/constrain_negotiation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_8"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/recycler_novel">
@@ -524,7 +564,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginStart="@dimen/margin_8"
+                android:layout_marginStart="15dp"
                 android:background="@color/backGroundColor"
                 app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24"
                 app:layout_constraintStart_toStartOf="parent"/>
@@ -535,8 +575,9 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_negotiation"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="160dp"
             android:layoutDirection="rtl"
+            android:background="@drawable/book_shape"
             app:layout_constraintTop_toBottomOf="@id/constrain_negotiation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>

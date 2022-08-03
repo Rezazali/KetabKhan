@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.WindowManager;
 
 import com.book.fidibo.databinding.ActivityPdfBookBinding;
 import com.book.fidibo.models.Category;
@@ -24,9 +25,13 @@ public class PdfBookActivity extends AppCompatActivity {
         binding = ActivityPdfBookBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_SECURE,
+                WindowManager.LayoutParams.FLAG_SECURE);
 
         bundle = getIntent().getExtras();
         category = bundle.getParcelable("data");
+
 
 
         @SuppressLint("SdCardPath")
