@@ -30,8 +30,15 @@ public class ShowAllBookAdapter extends RecyclerView.Adapter<ShowAllBookViewHold
     @NonNull
     @Override
     public ShowAllBookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.book_more_info_model,null);
+
+        LayoutInflater inflater =
+                LayoutInflater.from(context);
+
+        View view =
+                inflater.inflate(
+                                R.layout.book_more_info_model,
+                                null);
+
         return new ShowAllBookViewHolder(view);
     }
 

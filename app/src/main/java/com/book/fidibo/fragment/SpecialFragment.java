@@ -18,6 +18,7 @@ import com.book.fidibo.activity.BookDetailActivity;
 import com.book.fidibo.activity.FavoriteChooseActivity;
 import com.book.fidibo.adapter.CategoryAdapter;
 import com.book.fidibo.adapter.HomeAdapter;
+import com.book.fidibo.adapter.SpecialChooseAdapter;
 import com.book.fidibo.database.AppDatabase;
 import com.book.fidibo.databinding.FragmentSpecialBinding;
 import com.book.fidibo.models.Category;
@@ -36,6 +37,7 @@ public class SpecialFragment extends Fragment implements HomeAdapter.UserOnClick
     AppDatabase appDatabase;
 
     List<Category> category;
+    RecyclerView recyclerView;
 
     public SpecialFragment() {
         // Required empty public constructor
@@ -50,15 +52,26 @@ public class SpecialFragment extends Fragment implements HomeAdapter.UserOnClick
 
         appDatabase = AppDatabase.getInstance(getActivity());
 
-        if (appDatabase.idao().categoryList() == null){
+/*        View view = getLayoutInflater().inflate(R.layout.special_daynamic_layout,null);
+
+        recyclerView = view.findViewById(R.id.recycler_container);
+
+
+        if (appDatabase.idao().specialCategoryList().size()== 0){
+
+            binding.imgBookBox.setVisibility(View.VISIBLE);
+
         }else{
-            CategoryAdapter adapter = new CategoryAdapter(appDatabase.idao().categoryList(),getActivity(),this::onClick);
-            binding.recyclerCategory.setAdapter(adapter);
+            binding.imgBookBox.setVisibility(View.GONE);
+
+            SpecialChooseAdapter adapter = new SpecialChooseAdapter(appDatabase.idao().specialCategoryList(),getActivity());
+            recyclerView.setAdapter(adapter);
 
             LinearLayoutManager manager = new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false);
-            binding.recyclerCategory.setLayoutManager(manager);
-        }
+            recyclerView.setLayoutManager(manager);
 
+            binding.linearContainer.addView(view);
+        }*/
 
 
 

@@ -133,6 +133,7 @@ public class LibraryFragment extends Fragment implements CategoryAdapter.UserOnC
 
                 appDatabase.idao().deleteVideo(Integer.parseInt(category.getId()));
                 setBottomSheet();
+                bottomSheetDialog.cancel();
              /*   getActivity().finish();
                 getActivity().overridePendingTransition(0, 0);
                 getActivity().startActivity(getActivity().getIntent());

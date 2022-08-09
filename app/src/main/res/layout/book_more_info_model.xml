@@ -39,6 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="right"
+            android:maxLines="2"
             android:layout_alignTop="@id/card_more_info"
             android:layout_toStartOf="@id/card_more_info"
             android:layout_margin="@dimen/margin_8" />
@@ -50,8 +51,8 @@
             android:layout_toStartOf="@id/card_more_info"
             android:layout_alignTop="@id/txt_titleBook_more_info"
             android:layout_marginEnd="@dimen/margin_8"
-            android:layout_marginTop="25dp"
-            android:paddingTop="@dimen/margin_8"/>
+            android:layout_marginTop="40dp"
+            />
 
         <androidx.appcompat.widget.AppCompatRatingBar
             android:id="@+id/rating_bar"

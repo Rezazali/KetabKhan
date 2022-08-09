@@ -1,11 +1,13 @@
 package com.book.fidibo.database;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
 import com.book.fidibo.models.Category;
+import com.book.fidibo.models.SpecialCategory;
 
 import java.util.List;
 
@@ -16,11 +18,15 @@ public interface IDAO {
     long insert (Category category);
 
     @Insert
-    void insertList (List<Category> category);
+    void insertList (List<SpecialCategory> specialCategoryList);
 
 
     @Query("select * from tbl_book")
     List<Category> categoryList();
+
+
+    @Query("select * from tbl_specialCategory")
+    List<SpecialCategory> specialCategoryList();
 
 
     @Update
@@ -32,6 +38,9 @@ public interface IDAO {
 
     @Query("delete from tbl_book where id = :categoryId")
     void deleteVideo(int categoryId);
+
+    @Query("delete from tbl_specialCategory where id = :listId")
+     void deleteCategory(int listId);
 
 
 

@@ -26,7 +26,7 @@ public class PopularBookActivity extends AppCompatActivity implements CategoryAd
 
         binding = ActivityPopularBookBinding.inflate(getLayoutInflater());
 
-        Log.d("","");
+
         categories = getIntent().getParcelableArrayListExtra("data");
 
         String title = getIntent().getStringExtra("title");
@@ -35,20 +35,41 @@ public class PopularBookActivity extends AppCompatActivity implements CategoryAd
         binding.imgBack.setOnClickListener(view -> onBackPressed());
 
 
-        HomeAdapter adapter = new HomeAdapter(categories,getApplicationContext(),this::Category);
+        HomeAdapter adapter =
+                new HomeAdapter(
+                        categories,
+                        getApplicationContext(),
+                        this::Category);
+
         binding.recyclerMore.setAdapter(adapter);
 
-        LinearLayoutManager manager = new LinearLayoutManager(getApplicationContext(),RecyclerView.HORIZONTAL,false);
+
+        LinearLayoutManager manager =
+                new LinearLayoutManager(
+                        getApplicationContext(),
+                        RecyclerView.HORIZONTAL,
+                        false);
+
         binding.recyclerMore.setLayoutManager(manager);
 
         Log.d("","");
 
 
-        CategoryAdapter categoryAdapter = new CategoryAdapter(categories,getApplicationContext(),
+        CategoryAdapter categoryAdapter =
+                new CategoryAdapter(
+                        categories,
+                        getApplicationContext(),
                 this);
+
         binding.recyclerAllBook.setAdapter(categoryAdapter);
 
-        LinearLayoutManager manager1 = new LinearLayoutManager(getApplicationContext(), RecyclerView.VERTICAL,false);
+
+        LinearLayoutManager manager1 =
+                new LinearLayoutManager(
+                        getApplicationContext(),
+                        RecyclerView.VERTICAL,
+                        false);
+
         binding.recyclerAllBook.setLayoutManager(manager1);
 
 

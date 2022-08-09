@@ -2,14 +2,26 @@ package com.book.fidibo.database;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.migration.Migration;
+import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.book.fidibo.models.Category;
+import com.book.fidibo.models.SpecialCategory;
 
-@Database(entities = {Category.class}, version = 1,exportSchema = false )
+@Database(entities = {Category.class, SpecialCategory.class}, version = 2)
 public abstract class AppDatabase extends RoomDatabase {
+
+
+    static final Migration MIGRATION_1_2 = new Migration(1, 2) {
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase database) {
+            database.execSQL("CREATE TABLE SpecialCategory() ");
+        }
+    };
 
 
     public static String DB_NAME = "category.db";
@@ -24,6 +36,7 @@ public abstract class AppDatabase extends RoomDatabase {
                 if (instance == null){
                     instance = Room.databaseBuilder(context,AppDatabase.class,DB_NAME)
                             .allowMainThreadQueries()
+                            .addMigrations(MIGRATION_1_2)
                             .build();
                 }
             }

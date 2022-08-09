@@ -53,14 +53,10 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeViewHolder> {
 
             Picasso.get()
                     .load(Uri.parse(category.getBookThumbnailS()))
-                    .placeholder(R.raw.loading_dots)
-                    .placeholder(R.color.gray)
+                    .placeholder(R.drawable.progress_animation)
                     .into(holder.img_book);
-            holder.lottie.playAnimation();
-            holder.lottie.setVisibility(View.GONE);
 
             /*holder.getLottie().setVisibility(View.INVISIBLE);*/
-
 
 
         Log.d("","");

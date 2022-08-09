@@ -1,16 +1,16 @@
 package com.book.fidibo.activity.uiActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.ActionBar;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.View;
+
 
 import com.book.fidibo.activity.BookDetailActivity;
 import com.book.fidibo.adapter.SearchAdapter;
@@ -22,7 +22,7 @@ import com.book.fidibo.requestBody.WebServiceCaller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Filter;
+
 
 public class SearchViewActivity extends AppCompatActivity implements SearchAdapter.UserOnClickListener {
 
@@ -36,13 +36,9 @@ public class SearchViewActivity extends AppCompatActivity implements SearchAdapt
         super.onCreate(savedInstanceState);
 
 
-        binding =
-                ActivitySearchViewBinding.
-                        inflate(getLayoutInflater());
+        binding = ActivitySearchViewBinding.inflate(getLayoutInflater());
 
-        setContentView(
-                binding.
-                        getRoot());
+        setContentView(binding.getRoot());
 
         webServiceCaller =
                 new WebServiceCaller();

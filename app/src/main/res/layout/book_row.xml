@@ -6,10 +6,11 @@
 
 
     <androidx.cardview.widget.CardView
-        android:layout_width="100dp"
-        android:layout_height="120dp"
+        android:layout_width="130dp"
+        android:layout_height="180dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:cardUseCompatPadding="true"
         app:cardCornerRadius="@dimen/margin_8"
         android:elevation="@dimen/margin_8"
         android:layout_margin="@dimen/margin_8">
@@ -20,21 +21,6 @@
             android:layout_height="match_parent"
             android:transitionName="myImage"
             android:scaleType="fitXY"/>
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lottie_book"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:elevation="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:lottie_autoPlay="true"
-            app:lottie_rawRes="@raw/loading_dots" />
-
-
-
     </androidx.cardview.widget.CardView>
 
 

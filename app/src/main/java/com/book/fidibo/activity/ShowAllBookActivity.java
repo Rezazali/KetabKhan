@@ -37,11 +37,20 @@ public class ShowAllBookActivity extends AppCompatActivity {
 
         binding.imgBack.setOnClickListener(view -> onBackPressed());
 
-        ShowAllBookAdapter adapter = new ShowAllBookAdapter(categories,ShowAllBookActivity.this);
+        ShowAllBookAdapter adapter =
+                new ShowAllBookAdapter(
+                        categories,
+                        ShowAllBookActivity.this);
+
         binding.recyclerShowAllBook.setAdapter(adapter);
 
 
-        LinearLayoutManager manager = new LinearLayoutManager(ShowAllBookActivity.this, RecyclerView.VERTICAL,false);
+        LinearLayoutManager manager =
+                new LinearLayoutManager(
+                        ShowAllBookActivity.this,
+                        RecyclerView.VERTICAL,
+                        false);
+
         binding.recyclerShowAllBook.setLayoutManager(manager);
 
 

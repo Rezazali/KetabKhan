@@ -35,7 +35,9 @@ public class PdfBookActivity extends AppCompatActivity {
 
 
         @SuppressLint("SdCardPath")
-        File file = new File("/data/data/com.book.fidibo/files/downloads/"+category.getBookTitle()+".pdf");
+        File file =
+                new File(
+                        "/data/data/com.book.fidibo/files/downloads/"+category.getBookTitle()+".pdf");
 
 
         binding.pdfView.fromFile(file).load();

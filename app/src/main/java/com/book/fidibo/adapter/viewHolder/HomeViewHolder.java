@@ -24,7 +24,6 @@ public class HomeViewHolder extends RecyclerView.ViewHolder {
     public AppCompatButton btn_more;
 
     public AppCompatImageView img_book;
-    public LottieAnimationView lottie;
 
 
     public HomeViewHolder(@NonNull View itemView) {
@@ -32,7 +31,7 @@ public class HomeViewHolder extends RecyclerView.ViewHolder {
 
         img_book = itemView.findViewById(R.id.img_book_category);
 
-        lottie = itemView.findViewById(R.id.lottie_book);
+
 
         img_book_library = itemView.findViewById(R.id.img_book_library);
         img_book_bottom = itemView.findViewById(R.id.img_bottom_sheet);

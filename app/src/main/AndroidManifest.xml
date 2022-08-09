@@ -20,27 +20,32 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:screenOrientation="fullSensor"
             android:name=".activity.FavoriteChooseActivity"
             android:exported="false" />
         <activity
+            android:screenOrientation="fullSensor"
             android:name=".activity.ShowAllBookActivity"
             android:exported="false"
             android:label="@string/title_activity_show_all_book"
             android:theme="@style/Theme.Fidibo.NoActionBar" />
         <activity
+            android:screenOrientation="fullSensor"
             android:name=".activity.PopularBookActivity"
             android:exported="false" />
-        <activity
+        <activity  android:screenOrientation="fullSensor"
             android:name=".activity.uiActivity.SearchViewActivity"
             android:exported="false" />
         <activity
             android:name=".activity.PdfBookActivity"
             android:exported="false" />
         <activity
+            android:screenOrientation="fullSensor"
             android:name=".activity.BookDetailActivity"
             android:exported="false" />
 
         <activity
+            android:screenOrientation="fullSensor"
             android:name=".activity.uiActivity.SplashScreenActivity"
             android:exported="true">
 
@@ -56,7 +61,7 @@
             android:exported="false" />
 
         <activity android:name=".MainActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="fullSensor"
             android:launchMode="singleTask"
             />
     </application>

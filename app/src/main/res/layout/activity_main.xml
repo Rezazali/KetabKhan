@@ -37,7 +37,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_nav"
-        app:itemTextColor="@color/black"
+        app:itemTextColor="@color/txtColor"
         app:itemIconTint="@drawable/bottom_navigation_selector"/>
 
 

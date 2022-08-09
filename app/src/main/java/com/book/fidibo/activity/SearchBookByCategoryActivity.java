@@ -50,11 +50,20 @@ public class SearchBookByCategoryActivity extends AppCompatActivity implements C
         txt_title.setText(title);
 
 
-        CategoryAdapter categoryAdapter = new CategoryAdapter(category,SearchBookByCategoryActivity.this,SearchBookByCategoryActivity.this);
+        CategoryAdapter categoryAdapter =
+                new CategoryAdapter(
+                        category,
+                        SearchBookByCategoryActivity.this,
+                        SearchBookByCategoryActivity.this);
 
         recyclerCategoryBook.setAdapter(categoryAdapter);
 
-        LinearLayoutManager manager = new LinearLayoutManager(SearchBookByCategoryActivity.this,RecyclerView.VERTICAL,false);
+
+        LinearLayoutManager manager =
+                new LinearLayoutManager(SearchBookByCategoryActivity.this,
+                        RecyclerView.VERTICAL,
+                        false);
+
         recyclerCategoryBook.setLayoutManager(manager);
 
 

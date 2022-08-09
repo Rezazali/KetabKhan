@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
+import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -40,6 +42,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 
@@ -60,6 +63,14 @@ public class HomeFragment extends Fragment implements HomeAdapter.UserOnClickLis
         // Inflate the layout for this fragment
 
         binding = FragmentHomeBinding.inflate(getLayoutInflater());
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            Configuration configuration = getResources().getConfiguration();
+            configuration.setLayoutDirection(new Locale("ltr"));
+            getResources().updateConfiguration(configuration, getResources().getDisplayMetrics());
+        }
+
+
 /*
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 */

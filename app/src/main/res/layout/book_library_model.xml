@@ -38,15 +38,17 @@
         </androidx.cardview.widget.CardView>
 
 
-
-
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txt_titleBook"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/card_book_library"
-            android:layout_toStartOf="@id/card_book_library"
-            android:layout_margin="@dimen/margin_8" />
+            android:layout_marginStart="@dimen/margin_8"
+            android:layout_marginTop="@dimen/margin_8"
+            android:layout_marginEnd="@dimen/margin_8"
+            android:layout_marginBottom="@dimen/margin_8"
+            android:maxLines="2"
+            android:layout_toStartOf="@id/card_book_library" />
 
         <com.book.fidibo.customeview.PersianTextView
             android:id="@+id/txt_publisher"
@@ -54,8 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_toStartOf="@id/card_book_library"
             android:layout_alignTop="@id/txt_titleBook"
-            android:layout_margin="@dimen/margin_8"
-            android:paddingTop="@dimen/margin_8"/>
+            android:layout_marginTop="40dp" />
 
 
 

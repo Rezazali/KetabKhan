@@ -139,7 +139,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_programing"
         android:layout_width="match_parent"
-        android:layout_height="160dp"
+        android:layout_height="230dp"
         android:layoutDirection="rtl"
         android:background="@drawable/book_shape"
         app:layout_constraintTop_toBottomOf="@id/constrain_programing"
@@ -185,7 +185,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_growUp"
         android:layout_width="match_parent"
-        android:layout_height="160dp"
+        android:layout_height="230dp"
         android:layoutDirection="rtl"
         android:background="@drawable/book_shape"
         app:layout_constraintTop_toBottomOf="@id/constrain_growUp"
@@ -232,13 +232,12 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_psychology"
         android:layout_width="match_parent"
-        android:layout_height="160dp"
+        android:layout_height="230dp"
         android:layoutDirection="rtl"
         android:background="@drawable/book_shape"
         app:layout_constraintTop_toBottomOf="@id/constrain_psychology"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 
@@ -528,7 +527,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_novel"
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="230dp"
             android:layoutDirection="rtl"
             android:background="@drawable/book_shape"
             app:layout_constraintTop_toBottomOf="@id/constrain_novel"
@@ -575,7 +574,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_negotiation"
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="230dp"
             android:layoutDirection="rtl"
             android:background="@drawable/book_shape"
             app:layout_constraintTop_toBottomOf="@id/constrain_negotiation"
