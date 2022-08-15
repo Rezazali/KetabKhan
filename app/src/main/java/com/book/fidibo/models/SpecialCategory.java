@@ -1,5 +1,8 @@
 package com.book.fidibo.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
@@ -9,7 +12,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 @Entity(tableName = "tbl_specialCategory")
-public class SpecialCategory {
+public class SpecialCategory implements Parcelable {
 
 
     @PrimaryKey(autoGenerate = true)
@@ -153,6 +156,39 @@ public class SpecialCategory {
     }
 
 
+    protected SpecialCategory(Parcel in) {
+        book_id = in.readInt();
+        id = in.readString();
+        catId = in.readString();
+        bookType = in.readString();
+        bookTitle = in.readString();
+        bookUrl = in.readString();
+        bookThumbnailB = in.readString();
+        bookThumbnailS = in.readString();
+        bookNumbers = in.readString();
+        bookPublisher = in.readString();
+        bookDescription = in.readString();
+        totalRate = in.readString();
+        rateAvg = in.readString();
+        totalViews = in.readString();
+        totalDownload = in.readString();
+        cid = in.readString();
+        categoryName = in.readString();
+        categoryImage = in.readString();
+        categoryImageThumb = in.readString();
+    }
+
+    public static final Creator<SpecialCategory> CREATOR = new Creator<SpecialCategory>() {
+        @Override
+        public SpecialCategory createFromParcel(Parcel in) {
+            return new SpecialCategory(in);
+        }
+
+        @Override
+        public SpecialCategory[] newArray(int size) {
+            return new SpecialCategory[size];
+        }
+    };
 
     public int getBook_id() {
         return book_id;
@@ -304,5 +340,33 @@ public class SpecialCategory {
 
     public void setCategoryImageThumb(String categoryImageThumb) {
         this.categoryImageThumb = categoryImageThumb;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(book_id);
+        parcel.writeString(id);
+        parcel.writeString(catId);
+        parcel.writeString(bookType);
+        parcel.writeString(bookTitle);
+        parcel.writeString(bookUrl);
+        parcel.writeString(bookThumbnailB);
+        parcel.writeString(bookThumbnailS);
+        parcel.writeString(bookNumbers);
+        parcel.writeString(bookPublisher);
+        parcel.writeString(bookDescription);
+        parcel.writeString(totalRate);
+        parcel.writeString(rateAvg);
+        parcel.writeString(totalViews);
+        parcel.writeString(totalDownload);
+        parcel.writeString(cid);
+        parcel.writeString(categoryName);
+        parcel.writeString(categoryImage);
+        parcel.writeString(categoryImageThumb);
     }
 }

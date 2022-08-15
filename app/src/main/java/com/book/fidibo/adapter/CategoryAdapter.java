@@ -92,6 +92,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> {
             @Override
             public void onClick(View view) {
                 userOnClickListener.Category(category);
+
+
             }
         });
 

@@ -12,10 +12,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.book.fidibo.R;
 import com.book.fidibo.activity.BookDetailActivity;
 import com.book.fidibo.activity.FavoriteChooseActivity;
+import com.book.fidibo.activity.ShowAllBookActivity;
 import com.book.fidibo.adapter.CategoryAdapter;
 import com.book.fidibo.adapter.HomeAdapter;
 import com.book.fidibo.adapter.SpecialChooseAdapter;
@@ -26,6 +28,7 @@ import com.book.fidibo.models.objectModel.CategoryModel;
 import com.book.fidibo.requestBody.IResponseListener;
 import com.book.fidibo.requestBody.WebServiceCaller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -52,6 +55,9 @@ public class SpecialFragment extends Fragment implements HomeAdapter.UserOnClick
 
         appDatabase = AppDatabase.getInstance(getActivity());
 
+        View view = getLayoutInflater().inflate(R.layout.special_daynamic_layout,null);
+        recyclerView = view.findViewById(R.id.recycler_container);
+
 /*        View view = getLayoutInflater().inflate(R.layout.special_daynamic_layout,null);
 
         recyclerView = view.findViewById(R.id.recycler_container);
@@ -74,6 +80,21 @@ public class SpecialFragment extends Fragment implements HomeAdapter.UserOnClick
         }*/
 
 
+
+  /*      boolean reza = true;
+        if (reza == true){
+            binding.linearContainer.addView(view);
+
+            Log.d("","");
+            SpecialChooseAdapter adapter = new SpecialChooseAdapter(this.getArguments().getParcelableArrayList("data"),getActivity());
+            recyclerView.setAdapter(adapter);
+
+            LinearLayoutManager manager = new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false);
+            recyclerView.setLayoutManager(manager);
+        }else {
+            Toast.makeText(getActivity(), "reza", Toast.LENGTH_SHORT).show();
+        }
+*/
 
 
 
@@ -137,7 +158,6 @@ public class SpecialFragment extends Fragment implements HomeAdapter.UserOnClick
         },8);
 
 
-
         webServiceCaller.getBookByCategory(new IResponseListener() {
             @Override
             public void onSuccess(Object ResponseMessage) {
@@ -157,6 +177,53 @@ public class SpecialFragment extends Fragment implements HomeAdapter.UserOnClick
 
             }
         },7);
+
+
+        binding.imgBackJustFidibo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                webServiceCaller.getBookByCategory(new IResponseListener() {
+                    @Override
+                    public void onSuccess(Object ResponseMessage) {
+
+                        CategoryModel model = (CategoryModel) ResponseMessage;
+                        ArrayList<Category> categoryList = (ArrayList<Category>) model.getCategoryList();
+                        Intent intent = new Intent(getActivity(), ShowAllBookActivity.class);
+                        intent.putExtra("data",categoryList);
+                        startActivity(intent);
+
+                    }
+
+                    @Override
+                    public void onFailure(String errorResponseMessage) {
+
+                    }
+                },8);
+            }
+        });
+
+        binding.imgBackOxford.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                webServiceCaller.getBookByCategory(new IResponseListener() {
+                    @Override
+                    public void onSuccess(Object ResponseMessage) {
+
+                        CategoryModel model = (CategoryModel) ResponseMessage;
+                        ArrayList<Category> categoryList = (ArrayList<Category>) model.getCategoryList();
+                        Intent intent = new Intent(getActivity(), ShowAllBookActivity.class);
+                        intent.putExtra("data",categoryList);
+                        startActivity(intent);
+
+                    }
+
+                    @Override
+                    public void onFailure(String errorResponseMessage) {
+
+                    }
+                },7);
+            }
+        });
 
         return binding.getRoot();
 

@@ -409,11 +409,14 @@ public class HomeFragment extends Fragment implements HomeAdapter.UserOnClickLis
                 ///cleanUp with interface
 
 
+
                 CategoryModel model = (CategoryModel) ResponseMessage;
                 List<Category> categoryList = model.getCategoryList();
 
 
                 HomeAdapter adapter = new HomeAdapter(categoryList,getActivity(),HomeFragment.this::onClick);
+
+
 
                 binding.recyclerGrowUp.setAdapter(adapter);
 
@@ -563,8 +566,10 @@ public class HomeFragment extends Fragment implements HomeAdapter.UserOnClickLis
         SharedPreferences sharedPreferences
                 = requireActivity().getSharedPreferences(
                 "sharedPrefs", Context.MODE_PRIVATE);
+
         final SharedPreferences.Editor editor
                 = sharedPreferences.edit();
+
         final boolean isDarkModeOn
                 = sharedPreferences
                 .getBoolean(
@@ -645,7 +650,6 @@ public class HomeFragment extends Fragment implements HomeAdapter.UserOnClickLis
 
                     }
                 });
-
 
     }
 

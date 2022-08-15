@@ -11,6 +11,7 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constrain_special"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -124,6 +125,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_back_just_fidibo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -148,7 +150,7 @@
         app:layout_constraintTop_toBottomOf="@id/constrain_fidibo" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constrain_scroll"
+            android:id="@+id/constrain_oxford"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_8"
@@ -168,6 +170,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_back_oxford"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -185,7 +188,7 @@
             android:layout_width="match_parent"
             android:layout_height="240dp"
             android:layoutDirection="rtl"
-            app:layout_constraintTop_toBottomOf="@id/constrain_scroll"
+            app:layout_constraintTop_toBottomOf="@id/constrain_oxford"
             android:background="@drawable/book_shape"/>
 
 

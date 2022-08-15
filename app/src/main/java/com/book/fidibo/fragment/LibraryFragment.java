@@ -1,15 +1,10 @@
 package com.book.fidibo.fragment;
 
-
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatTextView;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,63 +16,42 @@ import android.widget.ImageView;
 
 import com.book.fidibo.R;
 import com.book.fidibo.activity.BookDetailActivity;
-import com.book.fidibo.activity.PdfBookActivity;
 import com.book.fidibo.adapter.CategoryAdapter;
 import com.book.fidibo.adapter.LibraryAdapter;
 import com.book.fidibo.database.AppDatabase;
-import com.book.fidibo.databinding.FragmentLibrayBinding;
+import com.book.fidibo.databinding.FragmentLibraryBinding;
+import com.book.fidibo.databinding.FragmentNavLibrayBinding;
 import com.book.fidibo.models.Category;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.squareup.picasso.Picasso;
 
-import java.util.Objects;
+
+public class LibraryFragment extends Fragment implements CategoryAdapter.UserOnClickListener{
 
 
-public class LibraryFragment extends Fragment implements CategoryAdapter.UserOnClickListener {
-
-
-    FragmentLibrayBinding binding;
+    FragmentLibraryBinding binding;
     AppDatabase appDatabase;
 
     public LibraryFragment() {
         // Required empty public constructor
     }
 
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        binding = FragmentLibrayBinding.inflate(getLayoutInflater());
-
-
-
-
+        binding = FragmentLibraryBinding.inflate(getLayoutInflater());
         appDatabase = AppDatabase.getInstance(getActivity());
-        setToolbar(binding.toolbar);
+        // Inflate the layout for this fragment\
+
         setBottomSheet();
-
         return binding.getRoot();
-
-    }
-
-    @SuppressLint("NotifyDataSetChanged")
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-
-    }
-
-
-    public void setToolbar(Toolbar toolbar){
-        ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
-        this.enableToolbar(false);
-    }
-
-    public void enableToolbar(boolean isValid){
-        Objects.requireNonNull(((AppCompatActivity) requireActivity())
-                        .getSupportActionBar())
-                .setDisplayShowTitleEnabled(isValid);
     }
 
 
@@ -87,7 +61,7 @@ public class LibraryFragment extends Fragment implements CategoryAdapter.UserOnC
 
 
         LinearLayoutManager manager =
-                new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
+                new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL,false);
         binding.recyclerLibrary.setLayoutManager(manager);
     }
 
@@ -96,13 +70,14 @@ public class LibraryFragment extends Fragment implements CategoryAdapter.UserOnC
     public void onResume() {
         super.onResume();
 
-      setBottomSheet();
+        setBottomSheet();
 
 
     }
 
     @Override
     public void Category(@NonNull Category category) {
+
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(getActivity(), R.style.BottomSheetDialogTheme);
         View view1 = LayoutInflater.from(getActivity())
                 .inflate(R.layout.layout_bottom_sheet,null);
@@ -132,6 +107,12 @@ public class LibraryFragment extends Fragment implements CategoryAdapter.UserOnC
             public void onClick(View view) {
 
                 appDatabase.idao().deleteVideo(Integer.parseInt(category.getId()));
+
+
+/*                File file = new File("/data/data/com.book.fidibo/files/downloads/");
+                  file.delete();
+                */
+
                 setBottomSheet();
                 bottomSheetDialog.cancel();
              /*   getActivity().finish();
@@ -144,6 +125,3 @@ public class LibraryFragment extends Fragment implements CategoryAdapter.UserOnC
         bottomSheetDialog.show();
     }
 }
-
-
-

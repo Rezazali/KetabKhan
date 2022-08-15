@@ -56,17 +56,16 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeViewHolder> {
                     .placeholder(R.drawable.progress_animation)
                     .into(holder.img_book);
 
+
+
             /*holder.getLottie().setVisibility(View.INVISIBLE);*/
 
 
         Log.d("","");
-        holder.img_book.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        holder.img_book.setOnClickListener(view -> {
 
-                /* ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context,view,"myImage");*/
-                onClickListener.onClick(category);
-            }
+            /* ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context,view,"myImage");*/
+            onClickListener.onClick(category);
         });
     }
 

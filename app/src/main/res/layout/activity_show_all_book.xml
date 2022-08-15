@@ -17,6 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:contentInsetStart="0dp"
         app:layout_collapseMode="pin"
+        android:elevation="@dimen/margin_8"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Dark">
 
         <RelativeLayout

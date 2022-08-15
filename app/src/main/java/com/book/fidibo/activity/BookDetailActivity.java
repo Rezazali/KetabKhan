@@ -6,27 +6,25 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 
 import android.annotation.SuppressLint;
-import android.app.Dialog;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
-import android.text.SpannableString;
 import android.text.Spanned;
-import android.text.method.LinkMovementMethod;
-import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 
-import com.book.fidibo.adapter.BookByCategoryAdapter;
+import com.book.fidibo.R;
+import com.book.fidibo.adapter.CategoryAdapter;
 import com.book.fidibo.database.AppDatabase;
 import com.book.fidibo.databinding.ActivityBookDetailBinding;
-import com.book.fidibo.models.Book;
+import com.book.fidibo.models.BookMark;
 import com.book.fidibo.models.Category;
-import com.book.fidibo.models.objectModel.BookModel;
+import com.book.fidibo.models.objectModel.CategoryModel;
 import com.book.fidibo.requestBody.IResponseListener;
 import com.book.fidibo.requestBody.WebServiceCaller;
 import com.downloader.Error;
@@ -37,7 +35,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class BookDetailActivity extends AppCompatActivity implements BookByCategoryAdapter.UserOnClickListener {
+public class BookDetailActivity extends AppCompatActivity implements CategoryAdapter.UserOnClickListener {
 
 
     AppDatabase appDatabase;
@@ -47,8 +45,6 @@ public class BookDetailActivity extends AppCompatActivity implements BookByCateg
 
     Category category;
 
-    Book book;
-
 
     WebServiceCaller webServiceCaller;
     @Override
@@ -57,26 +53,69 @@ public class BookDetailActivity extends AppCompatActivity implements BookByCateg
         binding = ActivityBookDetailBinding.inflate(getLayoutInflater());
 
         setContentView(binding.getRoot());
+        appDatabase = AppDatabase.getInstance(getApplicationContext());
 
 
+        binding.viewGradiant.bringToFront();
 
         setSupportActionBar(binding.toolbar);
+        bundle = getIntent().getExtras();
 
         //create tow methode and filter tow class for show in the onCreate
         ProgressDialog dialog = new ProgressDialog(this);
-        dialog.setMessage("درحال دانلود منتظر بمانید..");
 
-        bundle = getIntent().getExtras();
-        category = bundle.getParcelable("data");
+
+
 
         Log.d("","");
+        category = bundle.getParcelable("data");
 
-        book = bundle.getParcelable("dataa");
+        setDataBookDetail();
+        Log.d("","");
+        binding.txtTitleToolbar.setText(category.getBookTitle());
+        binding.txtTitle.setText(category.getBookTitle());
 
-      /*  categoryList = getIntent().getParcelableArrayListExtra("dataa");
-        if(categoryList==null) categoryList = getIntent().getParcelableExtra("dataa");*/
+        BookMark bookMark =
+                new BookMark(category.getId(),category.getCatId(),category.getBookTitle(),category.getBookUrl(),category.getBookThumbnailS(),category.getBookPublisher(),category.getCategoryName(), category.getBookDescription());
 
 
+
+
+
+
+        if (appDatabase.idao().isRowIsExistBookMArk(Integer.parseInt(category.getId()))){
+
+            binding.imgBookMark.setImageResource(R.drawable.ic_book_mark_black);
+
+        }else {
+
+            binding.imgBookMark.setImageResource(R.drawable.ic_book_mark_whit);
+        }
+
+        binding.imgBookMark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Log.d("","");
+                if (appDatabase.idao().isRowIsExistBookMArk(Integer.parseInt(category.getId()))){
+
+                   binding.imgBookMark.setImageResource(R.drawable.ic_book_mark_whit);
+
+                   appDatabase.idao().deleteBookMArk(Integer.parseInt(category.getId()));
+
+               }else {
+                   binding.imgBookMark.setImageResource(R.drawable.ic_book_mark_black);
+
+                   long result = appDatabase.idao().insertBookMArk(bookMark);
+
+                   if (result >0){
+                       Toast.makeText(BookDetailActivity.this, "yes", Toast.LENGTH_SHORT).show();
+                   }else{
+                       Toast.makeText(BookDetailActivity.this, "no", Toast.LENGTH_SHORT).show();
+                   }
+               }
+            }
+        });
 
         webServiceCaller = new WebServiceCaller();
 
@@ -86,14 +125,14 @@ public class BookDetailActivity extends AppCompatActivity implements BookByCateg
 
                 Log.d("","");
 
-                BookModel model = (BookModel) ResponseMessage;
-                List<Book>bookList = model.getONLINEBook();
+                CategoryModel model = (CategoryModel) ResponseMessage;
+                List<Category>categoryList = model.getCategoryList();
 
-                BookByCategoryAdapter adapter =
-                        new BookByCategoryAdapter(
-                                bookList,
+                CategoryAdapter adapter =
+                        new CategoryAdapter(
+                                categoryList,
                                 getApplicationContext()
-                                ,BookDetailActivity.this::onClick);
+                                ,BookDetailActivity.this);
 
                 binding.recyclerRecent.setAdapter(adapter);
 
@@ -116,32 +155,6 @@ public class BookDetailActivity extends AppCompatActivity implements BookByCateg
             }
         });
 
-        if (category != null){
-
-            setDataBookDetail();
-            binding.txtTitleToolbar.setText(category.getBookTitle());
-            binding.txtTitle.setText(category.getBookTitle());
-
-        }else{
-
-            binding.txtPublisher.setText(book.getBookPublisher());
-            Spanned htmlAsSpanned = Html.fromHtml(book.getBookDescription());
-            binding.txtDescription.setText(htmlAsSpanned);
-
-            binding.txtCategory.setText(book.getCategoryName());
-            binding.txtPublisherInfo.setText(book.getBookPublisher());
-            binding.txtDownload.setText(book.getTotalDownload());
-            Picasso.get().load(Uri.parse(book.getBookThumbnailS())).into(binding.imgBookDetail);
-            binding.txtDescription.setClickable(true);
-
-        }
-
-
-
-
-        appDatabase = AppDatabase.getInstance(getApplicationContext());
-
-        Log.d("","");
 
 
         @SuppressLint("SdCardPath")
@@ -180,7 +193,7 @@ public class BookDetailActivity extends AppCompatActivity implements BookByCateg
         super.onResume();
         if (appDatabase.idao().isRowIsExist(Integer.parseInt(category.getId()))){
 
-            binding.btnDownloadPdf.setText("تماشا");
+            binding.btnDownloadPdf.setText("خواندن");
         }else{
 
             binding.btnDownloadPdf.setText("دانلود");
@@ -200,6 +213,7 @@ public class BookDetailActivity extends AppCompatActivity implements BookByCateg
 
     public void setDataBookDetail(){
 
+        Log.d("","");
         Spanned htmlAsSpanned = Html.fromHtml(category.getBookDescription());
         binding.txtTitle.setText(category.getBookTitle());
         binding.txtPublisher.setText(category.getBookPublisher());
@@ -208,8 +222,7 @@ public class BookDetailActivity extends AppCompatActivity implements BookByCateg
         binding.txtDescription.setTrimExpandedText("بسته");
 
 
-        binding.ratingBar.setRating(Integer.parseInt(category.getTotalRate()));
-
+        Log.d("","");
         binding.txtCategory.setText(category.getCategoryName());
         binding.txtPublisherInfo.setText(category.getBookPublisher());
         binding.txtDownload.setText(category.getTotalDownload());
@@ -242,7 +255,7 @@ public class BookDetailActivity extends AppCompatActivity implements BookByCateg
     }
 
 
-    public void downloadManager(Dialog dialog,String dirPath){
+    public void downloadManager(ProgressDialog dialog,String dirPath){
         PRDownloader.download(
                 String.valueOf(Uri.parse(category.getBookUrl())),
                         dirPath,
@@ -257,14 +270,14 @@ public class BookDetailActivity extends AppCompatActivity implements BookByCateg
 
                 .setOnProgressListener(progress -> {
                     dialog.show();
-                        /*long per = progress.currentBytes*100 /progress.totalBytes;
-                        dialog.setMessage("downloding..."+per);*/
+                        long per = progress.currentBytes*100 /progress.totalBytes;
+                        dialog.setMessage(  "درحال دانلود لطفا منتظر بمانید..." +per+"درصد");
 
                 })
                 .start(new OnDownloadListener() {
                     @Override
                     public void onDownloadComplete() {
-                        Toast.makeText(BookDetailActivity.this, "تمام شد", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(BookDetailActivity.this, "با موفقیت دانلود شد", Toast.LENGTH_SHORT).show();
                         Log.d("","");
                         dialog.cancel();
 
@@ -284,19 +297,12 @@ public class BookDetailActivity extends AppCompatActivity implements BookByCateg
     }
 
 
-
-    public void setrecy(){
-
-
-
-    }
-
     @Override
-    public void onClick(Book book) {
-        Log.d("","");
+    public void Category(Category category) {
+
         Intent intent = new Intent(getApplicationContext(), BookDetailActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra("dataa",book);
+        intent.putExtra("data",category);
         startActivity(intent);
     }
 }

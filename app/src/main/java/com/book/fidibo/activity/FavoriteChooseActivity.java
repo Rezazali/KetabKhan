@@ -1,12 +1,18 @@
 package com.book.fidibo.activity;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import android.util.AttributeSet;
 import android.util.Log;
 
 import android.view.View;
@@ -18,6 +24,7 @@ import com.book.fidibo.R;
 import com.book.fidibo.adapter.SpecialChooseAdapter;
 import com.book.fidibo.database.AppDatabase;
 import com.book.fidibo.databinding.ActivityFavoriteChooseBinding;
+import com.book.fidibo.fragment.SpecialFragment;
 import com.book.fidibo.models.Category;
 import com.book.fidibo.models.SpecialCategory;
 import com.book.fidibo.models.objectModel.CategoryModel;
@@ -26,6 +33,7 @@ import com.book.fidibo.requestBody.IResponseListener;
 import com.book.fidibo.requestBody.WebServiceCaller;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FavoriteChooseActivity extends AppCompatActivity {
@@ -46,6 +54,7 @@ public class FavoriteChooseActivity extends AppCompatActivity {
 
 
         View view1 = getLayoutInflater().inflate(R.layout.fragment_special,null);
+
         ConstraintLayout layout = view1.findViewById(R.id.linear_container);
 
 
@@ -91,7 +100,17 @@ public class FavoriteChooseActivity extends AppCompatActivity {
                             recyclerView.setLayoutManager(manager);*/
 
 
+                        /*    SpecialCategoryModel model = (SpecialCategoryModel) ResponseMessage;
+                            ArrayList<SpecialCategory> categoryList = (ArrayList<SpecialCategory>) model.getSpecialCategories();
 
+                            Log.d("","");
+                            FragmentManager manager = getSupportFragmentManager();
+                            FragmentTransaction fragmentTransaction = manager.beginTransaction();
+                            SpecialFragment fragment = new SpecialFragment();
+                            Bundle bundle = new Bundle();
+                            bundle.putParcelableArrayList("data",categoryList);
+                            fragment.setArguments(bundle);
+                            fragmentTransaction.replace(R.id.constrain_special,fragment,"TAG_FRAGMENT").commit();*/
 
 
 
@@ -111,7 +130,7 @@ public class FavoriteChooseActivity extends AppCompatActivity {
                     },2);
 
                     Log.d("","");
-                    layout.removeView(view2);
+                    layout.addView(view2);
 
                 }else if (id == R.id.radioButto2n){
                     Toast.makeText(getApplicationContext(), "توسعه فردی", Toast.LENGTH_SHORT).show();
@@ -120,4 +139,6 @@ public class FavoriteChooseActivity extends AppCompatActivity {
         });
 
     }
+
+
 }

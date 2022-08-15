@@ -8,26 +8,28 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
 
-public class PersianTextView extends AppCompatTextView {
+public class PersianTextViewLigth extends AppCompatTextView {
 
-    private void setFont(@NonNull Context context){
-        Typeface typeface = Typeface.createFromAsset(context.getAssets(), "font/iran_sans.ttf");
+    public void setFont(@NonNull Context context){
+        Typeface typeface = Typeface.createFromAsset(context.getAssets(), "font/IRANSansMobile_Light.ttf");
         setTypeface(typeface);
+
     }
 
-
-    public PersianTextView(@NonNull Context context) {
+    public PersianTextViewLigth(@NonNull Context context) {
         super(context);
         setFont(context);
     }
 
-    public PersianTextView(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public PersianTextViewLigth(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         setFont(context);
+
     }
 
-    public PersianTextView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public PersianTextViewLigth(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         setFont(context);
+
     }
 }

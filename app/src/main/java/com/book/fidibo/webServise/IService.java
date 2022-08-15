@@ -2,7 +2,6 @@ package com.book.fidibo.webServise;
 
 import androidx.annotation.Nullable;
 
-import com.book.fidibo.models.objectModel.BookModel;
 import com.book.fidibo.models.objectModel.CategoryModel;
 import com.book.fidibo.models.objectModel.SpecialCategoryModel;
 
@@ -15,7 +14,7 @@ public interface IService {
 
     @Nullable
     @GET("api.php?latest")
-    Call<BookModel> getListBook();
+    Call<CategoryModel> getListBook();
 
     @Nullable
     @GET("api.php")

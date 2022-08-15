@@ -5,11 +5,13 @@
       <map>
         <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/drawable/background_splashsceen.xml" value="0.1805" />
         <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/drawable/book_backgruond.xml" value="0.1" />
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/drawable/book_backgruond_search.xml" value="0.136" />
         <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/drawable/book_shape.xml" value="0.1" />
         <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/drawable/bottom_navigation_selector.xml" value="0.1275" />
         <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/drawable/bottom_sheet_bacground.xml" value="0.33" />
         <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/drawable/button_shape.xml" value="0.1175" />
         <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/drawable/button_special_shape.xml" value="0.1" />
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/drawable/ic_baseline_access_time_24.xml" value="0.136" />
         <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.1675" />
         <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/drawable/ic_baseline_arrow_back_ios_24.xml" value="0.166" />
         <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/drawable/ic_baseline_arrow_forward_24.xml" value="0.183" />
@@ -17,6 +19,9 @@
         <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/drawable/ic_baseline_nights_stay_24.xml" value="0.1675" />
         <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.2305" />
         <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/drawable/ic_baseline_share_24.xml" value="0.101" />
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/drawable/ic_book_mark_black.xml" value="0.136" />
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/drawable/ic_book_mark_whit.xml" value="0.204" />
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/drawable/ic_bookmark_badge.xml" value="0.2125" />
         <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/drawable/ic_fidibo_image_png.xml" value="0.101" />
         <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/drawable/ic_icon_download.xml" value="0.167" />
         <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/drawable/ic_icon_growup.xml" value="0.166" />
@@ -31,9 +36,13 @@
         <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/drawable/image_shadow.xml" value="0.1" />
         <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/drawable/progress_animation.xml" value="0.153" />
         <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/drawable/searchview_backgrund.xml" value="0.16" />
-        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/layout/activity_book_detail.xml" value="0.18" />
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/drawable/shape_backgruond_detail.xml" value="0.142" />
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/layout/activity_book_detail.xml" value="0.2" />
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/layout/activity_book_mark.xml" value="0.18426678067550234" />
         <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/layout/activity_category_book.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/layout/activity_download_shelf.xml" value="0.17272338606241983" />
         <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/layout/activity_favorite_choose.xml" value="0.25" />
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/layout/activity_library_nav.xml" value="0.18426678067550234" />
         <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/layout/activity_pdf_book.xml" value="0.1875" />
         <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/layout/activity_pdf_viewr_book.xml" value="0.22447916666666667" />
@@ -48,11 +57,16 @@
         <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/layout/book_row.xml" value="0.14505893019038985" />
         <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/layout/category_row.xml" value="0.22" />
         <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/layout/fragment_first.xml" value="0.1875" />
-        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/layout/fragment_home.xml" value="0.10380952380952381" />
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/layout/fragment_home.xml" value="0.22" />
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/layout/fragment_library.xml" value="0.2" />
         <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/layout/fragment_libray.xml" value="0.192481884057971" />
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/layout/fragment_nav_libray.xml" value="0.25" />
         <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/layout/fragment_search.xml" value="0.33" />
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/layout/fragment_shelf.xml" value="0.22" />
         <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/layout/fragment_special.xml" value="0.18" />
         <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/layout/layout_bottom_sheet.xml" value="0.33" />
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/layout/layout_bottom_sheet_shelf.xml" value="0.25" />
+        <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/layout/layout_daynamic_shelf.xml" value="0.19011406844106463" />
         <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/layout/listbook_row.xml" value="0.33868974042027195" />
         <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/layout/search_book_by_category.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/reza/AndroidStudioProjects/Fidibo/app/src/main/res/layout/search_model.xml" value="0.18" />

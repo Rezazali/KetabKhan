@@ -94,7 +94,7 @@
             android:layout_alignParentEnd="true"
             android:background="@color/backGroundColor"/>
 
-        <com.book.fidibo.customeview.PersianTextView
+        <com.book.fidibo.customeview.PersianTextViewLigth
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -142,7 +142,7 @@
             android:layout_alignParentEnd="true"
             android:background="@color/backGroundColor"/>
 
-        <com.book.fidibo.customeview.PersianTextView
+        <com.book.fidibo.customeview.PersianTextViewLigth
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -189,15 +189,15 @@
             android:layout_alignParentEnd="true"
             android:background="@color/backGroundColor"/>
 
-        <com.book.fidibo.customeview.PersianTextView
+        <com.book.fidibo.customeview.PersianTextViewLigth
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="روانشناسی"
-            android:textSize="20sp"
-            android:layout_toStartOf="@id/img_physiology"
             android:layout_marginEnd="@dimen/margin_8"
-            android:textColor="@color/txtColor"/>
+            android:layout_toStartOf="@id/img_physiology"
+            android:text="روانشناسی"
+            android:textColor="@color/txtColor"
+            android:textSize="20sp" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="wrap_content"
@@ -236,15 +236,15 @@
             android:layout_alignParentEnd="true"
             android:background="@color/backGroundColor"/>
 
-        <com.book.fidibo.customeview.PersianTextView
+        <com.book.fidibo.customeview.PersianTextViewLigth
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="رمان"
-            android:textSize="20sp"
-            android:layout_toStartOf="@id/img_novel"
             android:layout_marginEnd="@dimen/margin_8"
-            android:textColor="@color/txtColor"/>
+            android:layout_toStartOf="@id/img_novel"
+            android:text="رمان"
+            android:textColor="@color/txtColor"
+            android:textSize="20sp" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="wrap_content"
@@ -283,7 +283,7 @@
             android:layout_alignParentEnd="true"
             android:background="@color/backGroundColor"/>
 
-        <com.book.fidibo.customeview.PersianTextView
+        <com.book.fidibo.customeview.PersianTextViewLigth
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"

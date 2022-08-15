@@ -20,50 +20,56 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:screenOrientation="fullSensor"
-            android:name=".activity.FavoriteChooseActivity"
+            android:screenOrientation="portrait"
+            android:name=".activity.BookMarkActivity"
             android:exported="false" />
         <activity
-            android:screenOrientation="fullSensor"
+            android:name=".activity.DownloadShelfActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.FavoriteChooseActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activity.ShowAllBookActivity"
             android:exported="false"
             android:label="@string/title_activity_show_all_book"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.Fidibo.NoActionBar" />
         <activity
-            android:screenOrientation="fullSensor"
             android:name=".activity.PopularBookActivity"
-            android:exported="false" />
-        <activity  android:screenOrientation="fullSensor"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activity.uiActivity.SearchViewActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.PdfBookActivity"
             android:exported="false" />
         <activity
-            android:screenOrientation="fullSensor"
             android:name=".activity.BookDetailActivity"
-            android:exported="false" />
-
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
-            android:screenOrientation="fullSensor"
             android:name=".activity.uiActivity.SplashScreenActivity"
-            android:exported="true">
-
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"
-                   />
+                <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".activity.SearchBookByCategoryActivity"
-            android:exported="false" />
-
-        <activity android:name=".MainActivity"
-            android:screenOrientation="fullSensor"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
             android:launchMode="singleTask"
-            />
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

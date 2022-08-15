@@ -2,7 +2,6 @@ package com.book.fidibo.requestBody;
 
 import androidx.annotation.NonNull;
 
-import com.book.fidibo.models.objectModel.BookModel;
 import com.book.fidibo.models.objectModel.CategoryModel;
 import com.book.fidibo.models.objectModel.SpecialCategoryModel;
 import com.book.fidibo.webServise.ApiUtils;
@@ -25,14 +24,15 @@ public class WebServiceCaller {
 
    public void getListBook(IResponseListener listener){
 
+
         Objects.requireNonNull(iService.getListBook()).enqueue(new Callback<>() {
             @Override
-            public void onResponse(@NonNull Call<BookModel> call, @NonNull Response<BookModel> response) {
+            public void onResponse(@NonNull Call<CategoryModel> call, @NonNull Response<CategoryModel> response) {
                 listener.onSuccess(response.body());
             }
 
             @Override
-            public void onFailure(@NonNull Call<BookModel> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<CategoryModel> call, @NonNull Throwable t) {
                 listener.onFailure(t.getMessage());
             }
         });

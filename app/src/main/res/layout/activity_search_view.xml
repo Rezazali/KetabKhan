@@ -32,6 +32,7 @@
                 android:layout_weight="1"
                 android:background="@null"
                 android:hint="جستجو در فیدیبو"
+                android:windowSoftInputMode="stateAlwaysVisible"
                 android:imeOptions="flagNoExtractUi|actionSearch"
                 android:inputType="textNoSuggestions"
                 android:layoutDirection="rtl"
@@ -49,7 +50,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/white"
+        android:background="@color/txtColor"
         app:layout_constraintTop_toBottomOf="@id/search_toolbar"
         android:backgroundTint="@color/material_on_surface_stroke" />
 

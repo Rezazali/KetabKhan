@@ -4,7 +4,6 @@ package com.book.fidibo;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,7 +16,7 @@ import android.widget.Toast;
 
 import com.book.fidibo.databinding.ActivityMainBinding;
 import com.book.fidibo.fragment.HomeFragment;
-import com.book.fidibo.fragment.LibraryFragment;
+import com.book.fidibo.fragment.LibraryNavFragment;
 import com.book.fidibo.fragment.SearchFragment;
 import com.book.fidibo.fragment.SpecialFragment;
 
@@ -39,8 +38,6 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(binding.getRoot());
 
-
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); // Fixed portrait orientation
 
 
         this.setClickMenu();
@@ -71,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
            */
 
                 if(item.getItemId() == R.id.bottom_library){
-                    getSupportFragmentManager().beginTransaction().replace(R.id.frame_container,new LibraryFragment()).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.frame_container,new LibraryNavFragment()).commit();
                     binding.bottomNav.getMenu().findItem(R.id.bottom_library).setChecked(true);
                     }
 
