@@ -38,6 +38,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_nav"
         app:itemTextColor="@color/txtColor"
+        app:itemTextAppearanceActive="@style/BottomNavigationViewTextStyle"
         app:itemIconTint="@drawable/bottom_navigation_selector"
         android:elevation="@dimen/margin_8"/>
 

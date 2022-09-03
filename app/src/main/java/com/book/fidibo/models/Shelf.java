@@ -24,9 +24,10 @@ public class Shelf {
     @ColumnInfo(name = "number")
     private int number;
 
-    public Shelf(String shelfTitle) {
+    public Shelf(String shelfTitle, int id) {
 
         this.shelfTitle = shelfTitle;
+        this.id = id;
 
     }
 
@@ -61,4 +62,5 @@ public class Shelf {
     public void setNumber(int number) {
         this.number = number;
     }
+
 }

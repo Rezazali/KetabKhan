@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".activity.uiActivity.SplashScreenActivity">
 
+
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottie"
         android:layout_width="300dp"
@@ -18,17 +19,17 @@
         app:lottie_autoPlay="true"
         app:lottie_rawRes="@raw/welcome_book1" />
 
+
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="BookApp"
+        android:text="@string/name_splach"
         android:textColor="@color/black"
         android:textSize="30sp"
         app:layout_constraintTop_toBottomOf="@id/lottie"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_margin="@dimen/margin_8"/>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

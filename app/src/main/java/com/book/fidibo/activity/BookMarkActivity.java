@@ -6,9 +6,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
-import com.book.fidibo.R;
+
 import com.book.fidibo.adapter.BookMarkAdapter;
-import com.book.fidibo.adapter.LibraryAdapter;
+
 import com.book.fidibo.database.AppDatabase;
 import com.book.fidibo.databinding.ActivityBookMarkBinding;
 

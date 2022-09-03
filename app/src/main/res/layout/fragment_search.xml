@@ -31,7 +31,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:hint="جستجو در فیدیبو"
+                android:hint="@string/search_fidibo"
                 android:textStyle="bold"
                 android:textColor="@color/txtColor"
                 android:layout_gravity="center"
@@ -71,7 +71,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_8"
-            android:text="همه دسته بندی ها"
+            android:text="@string/all_category_text"
             android:textColor="@color/teal_200"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -100,7 +100,7 @@
             android:layout_centerInParent="true"
             android:layout_marginEnd="@dimen/margin_8"
             android:layout_toStartOf="@id/img_programing"
-            android:text="برنامه نویسی"
+            android:text="@string/programing_text"
             android:textColor="@color/txtColor"
             android:textSize="20sp" />
 
@@ -148,7 +148,7 @@
             android:layout_centerInParent="true"
             android:layout_marginEnd="@dimen/margin_8"
             android:layout_toStartOf="@id/img_growUp"
-            android:text="توسعه فردی"
+            android:text="@string/growUp_text"
             android:textColor="@color/txtColor"
             android:textSize="20sp" />
 
@@ -195,7 +195,7 @@
             android:layout_centerInParent="true"
             android:layout_marginEnd="@dimen/margin_8"
             android:layout_toStartOf="@id/img_physiology"
-            android:text="روانشناسی"
+            android:text="@string/psychology_text"
             android:textColor="@color/txtColor"
             android:textSize="20sp" />
 
@@ -242,7 +242,7 @@
             android:layout_centerInParent="true"
             android:layout_marginEnd="@dimen/margin_8"
             android:layout_toStartOf="@id/img_novel"
-            android:text="رمان"
+            android:text="@string/novel_text"
             android:textColor="@color/txtColor"
             android:textSize="20sp" />
 
@@ -289,7 +289,7 @@
             android:layout_centerInParent="true"
             android:layout_marginEnd="@dimen/margin_8"
             android:layout_toStartOf="@id/img_negotiation"
-            android:text="مذاکره"
+            android:text="@string/negotiation_text"
             android:textColor="@color/txtColor"
             android:textSize="20sp" />
 

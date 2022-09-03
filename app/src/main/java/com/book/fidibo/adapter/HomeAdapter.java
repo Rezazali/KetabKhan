@@ -80,17 +80,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeViewHolder> {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
    /*
     Category category;
     List<Category>categoryList;

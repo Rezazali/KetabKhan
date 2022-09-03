@@ -15,34 +15,13 @@
 
 
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/setVisibility">
 
-        <ProgressBar
-            android:id="@+id/progressbar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="350dp"
-            android:visibility="visible"
-            />
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/no_connection"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="250dp"
-            android:visibility="invisible"
-            app:lottie_rawRes="@raw/no_internet_connection"/>
-
-    <androidx.appcompat.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -83,8 +62,7 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="پادکست"
-
+            android:text="@string/podcast_text"
             app:tabBackground="@color/black"
             app:tabIndicatorColor="#00FFFFFF"
             />
@@ -92,7 +70,7 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="همه"
+            android:text="@string/all_text"
            >
 
         </com.google.android.material.tabs.TabItem>
@@ -100,6 +78,63 @@
 
 
     </com.google.android.material.tabs.TabLayout>
+
+
+        <LinearLayout
+            android:id="@+id/linear_home_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/tab_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/constrain_scroll"
+            />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constrain_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_8"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linear_home_fragment">
+
+            <com.book.fidibo.customeview.PersianTextView
+                android:id="@+id/txt_scroll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_8"
+                android:layout_marginEnd="10dp"
+                android:text="@string/scroll_text"
+                android:textColor="@color/txtColor"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="15dp"
+                android:background="@color/backGroundColor"
+                app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:layoutDirection="rtl"
+            android:background="@drawable/book_shape"
+            app:layout_constraintTop_toBottomOf="@id/constrain_scroll"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
 
 
 
@@ -110,7 +145,7 @@
             android:layout_marginTop="@dimen/margin_8"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tab_layout">
+            app:layout_constraintTop_toBottomOf="@id/recycler_scroll">
 
             <com.book.fidibo.customeview.PersianTextView
                 android:id="@+id/txt_programing"
@@ -165,7 +200,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_8"
                 android:textColor="@color/txtColor"
-                android:text="توسعه فردی"
+                android:text="@string/growUp_text"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -212,7 +247,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_8"
                 android:textColor="@color/txtColor"
-                android:text="روانشناسی"
+                android:text="@string/psychology_text"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -247,7 +282,7 @@
             android:id="@+id/txt_publisher"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ناشران برتر"
+            android:text="@string/top_publisher"
             android:textSize="20sp"
             android:textColor="@color/txtColor"
             android:layout_marginTop="@dimen/margin_8"
@@ -292,7 +327,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/margin_8"
             android:layout_marginTop="15dp"
-            android:text="موضوعات پرطرفدار"
+            android:text="@string/pupulare_issue"
             android:textSize="20sp"
             android:textColor="@color/txtColor"
             app:layout_constraintEnd_toEndOf="parent"
@@ -336,7 +371,7 @@
                     android:layout_height="wrap_content"
                     android:background="@color/low_gray"
                     android:gravity="center"
-                    android:text="رمان"
+                    android:text="@string/novel_text"
                     android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -380,7 +415,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="توسعه فردی"
+                    android:text="@string/growUp_text"
                     android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -426,7 +461,7 @@
                     android:id="@+id/txt_best_nagotiation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="مذاکره"
+                    android:text="@string/negotiation_text"
                     android:textColor="@color/black"
 
                     android:gravity="center"
@@ -475,7 +510,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="برنامه نویسی"
+                    android:text="@string/programing_text"
                     android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -508,7 +543,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_8"
                 android:textColor="@color/txtColor"
-                android:text="رمان"
+                android:text="@string/novel_text"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -554,7 +589,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_8"
                 android:textColor="@color/txtColor"
-                android:text="مذاکره"
+                android:text="@string/negotiation_text"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

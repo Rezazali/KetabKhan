@@ -1,25 +1,32 @@
 package com.book.fidibo.activity;
 
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 
 import android.annotation.SuppressLint;
 
+
 import android.app.ProgressDialog;
 import android.content.Intent;
+
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.Spanned;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 
 import com.book.fidibo.R;
 import com.book.fidibo.adapter.CategoryAdapter;
+import com.book.fidibo.adapter.HomeAdapter;
 import com.book.fidibo.database.AppDatabase;
 import com.book.fidibo.databinding.ActivityBookDetailBinding;
 import com.book.fidibo.models.BookMark;
@@ -92,29 +99,35 @@ public class BookDetailActivity extends AppCompatActivity implements CategoryAda
             binding.imgBookMark.setImageResource(R.drawable.ic_book_mark_whit);
         }
 
-        binding.imgBookMark.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        binding.imgBookMark.setOnClickListener(view -> {
 
-                Log.d("","");
-                if (appDatabase.idao().isRowIsExistBookMArk(Integer.parseInt(category.getId()))){
+            Log.d("","");
+            if (appDatabase.idao().isRowIsExistBookMArk(Integer.parseInt(category.getId()))){
 
-                   binding.imgBookMark.setImageResource(R.drawable.ic_book_mark_whit);
+               binding.imgBookMark.setImageResource(R.drawable.ic_book_mark_whit);
 
-                   appDatabase.idao().deleteBookMArk(Integer.parseInt(category.getId()));
+               appDatabase.idao().deleteBookMArk(Integer.parseInt(category.getId()));
 
-               }else {
-                   binding.imgBookMark.setImageResource(R.drawable.ic_book_mark_black);
+           }else {
 
-                   long result = appDatabase.idao().insertBookMArk(bookMark);
+               binding.imgBookMark.setImageResource(R.drawable.ic_book_mark_black);
 
-                   if (result >0){
-                       Toast.makeText(BookDetailActivity.this, "yes", Toast.LENGTH_SHORT).show();
-                   }else{
-                       Toast.makeText(BookDetailActivity.this, "no", Toast.LENGTH_SHORT).show();
-                   }
+               long result = appDatabase.idao().insertBookMArk(bookMark);
+
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(BookDetailActivity.this,R.style.AlertDialogTheme);
+                ViewGroup viewGroup = findViewById(android.R.id.content);
+                View dialogView = LayoutInflater.from(view.getContext()).inflate(R.layout.dialog_success, viewGroup, false);
+                builder.setView(dialogView);
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+
+               if (result >0){
+                   Toast.makeText(BookDetailActivity.this, "yes", Toast.LENGTH_SHORT).show();
+               }else{
+                   Toast.makeText(BookDetailActivity.this, "no", Toast.LENGTH_SHORT).show();
                }
-            }
+           }
         });
 
         webServiceCaller = new WebServiceCaller();
@@ -128,11 +141,7 @@ public class BookDetailActivity extends AppCompatActivity implements CategoryAda
                 CategoryModel model = (CategoryModel) ResponseMessage;
                 List<Category>categoryList = model.getCategoryList();
 
-                CategoryAdapter adapter =
-                        new CategoryAdapter(
-                                categoryList,
-                                getApplicationContext()
-                                ,BookDetailActivity.this);
+                HomeAdapter adapter = new HomeAdapter(categoryList, getApplicationContext(),BookDetailActivity.this::Category);
 
                 binding.recyclerRecent.setAdapter(adapter);
 
@@ -188,6 +197,7 @@ public class BookDetailActivity extends AppCompatActivity implements CategoryAda
     }
 
 
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -200,15 +210,6 @@ public class BookDetailActivity extends AppCompatActivity implements CategoryAda
         }
     }
 
-    public void saveBook(String categoryId){
-
-        if (appDatabase.idao().isRowIsExist(Integer.parseInt(categoryId))){
-
-            appDatabase.idao().deleteVideo(Integer.parseInt(categoryId));
-        }else {
-            appDatabase.idao().insert(category);
-        }
-    }
 
 
     public void setDataBookDetail(){

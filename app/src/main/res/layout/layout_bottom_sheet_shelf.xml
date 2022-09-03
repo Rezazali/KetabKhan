@@ -10,7 +10,7 @@
         android:id="@+id/txt_title_shelf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ایجاد قفسه جدید"
+        android:text="@string/create_new_shelfe_text"
         android:textColor="@color/txtColor"
         android:layout_margin="@dimen/margin_8"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,7 +20,7 @@
         android:id="@+id/txt_what_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="چه عنوانی به ایم قفسه میدهید ؟ "
+        android:text="@string/what_your_issue_shelf_text"
 
         android:textColor="@color/txtColor"
         android:layout_margin="@dimen/margin_8"
@@ -35,7 +35,7 @@
         android:layout_margin="@dimen/margin_8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:hint="عنوان قفسه"
+        android:hint="@string/issue_shelf_text"
         android:textColor="@color/txtColor"
         app:layout_constraintTop_toBottomOf="@id/txt_what_name" />
 
@@ -47,7 +47,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="60dp"
         android:background="#00000000"
-        android:text="ایجاد قفسه"
+        android:text="@string/create_shelf_btn_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edt_shelf" />
 
@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:layout_marginStart="60dp"
-        android:text="انصراف"
+        android:text="@string/cancle_text_shelf"
         android:background="#00000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_shelf" />

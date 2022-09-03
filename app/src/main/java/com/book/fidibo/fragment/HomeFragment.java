@@ -2,9 +2,9 @@ package com.book.fidibo.fragment;
 
 
 import android.annotation.SuppressLint;
-import android.content.Context;
+
 import android.content.Intent;
-import android.content.SharedPreferences;
+
 
 import android.content.res.Configuration;
 import android.os.Build;
@@ -12,32 +12,42 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
+
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.Toolbar;
+
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Parcelable;
-import android.os.SystemClock;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+
 
 import com.book.fidibo.R;
 import com.book.fidibo.activity.BookDetailActivity;
+import com.book.fidibo.activity.PdfBookActivity;
 import com.book.fidibo.activity.PopularBookActivity;
 
 import com.book.fidibo.activity.SearchBookByCategoryActivity;
 import com.book.fidibo.activity.ShowAllBookActivity;
+import com.book.fidibo.adapter.CategoryScrollAdapter;
 import com.book.fidibo.adapter.HomeAdapter;
+import com.book.fidibo.database.AppDatabase;
 import com.book.fidibo.databinding.FragmentHomeBinding;
 
 import com.book.fidibo.models.Category;
+import com.book.fidibo.models.CategoryScroll;
 import com.book.fidibo.models.objectModel.CategoryModel;
+import com.book.fidibo.models.objectModel.CategoryScrollModel;
 import com.book.fidibo.requestBody.IResponseListener;
 import com.book.fidibo.requestBody.WebServiceCaller;
+import com.book.fidibo.ui.DarkTheme;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
@@ -50,7 +60,8 @@ public class HomeFragment extends Fragment implements HomeAdapter.UserOnClickLis
 
     FragmentHomeBinding binding;
     WebServiceCaller webServiceCaller;
-    private long mLastClickTime = 0;
+    AppDatabase appDatabase;
+
 
     public HomeFragment() {
         // Required empty public constructor
@@ -64,6 +75,12 @@ public class HomeFragment extends Fragment implements HomeAdapter.UserOnClickLis
 
         binding = FragmentHomeBinding.inflate(getLayoutInflater());
 
+        webServiceCaller = new WebServiceCaller();
+
+
+
+        appDatabase = AppDatabase.getInstance(getActivity());
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             Configuration configuration = getResources().getConfiguration();
             configuration.setLayoutDirection(new Locale("ltr"));
@@ -75,13 +92,19 @@ public class HomeFragment extends Fragment implements HomeAdapter.UserOnClickLis
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 */
         binding.setVisibility.setVisibility(View.GONE);
-        darkNight();
-        webServiceCaller = new WebServiceCaller();
+
+        getCategoryScroll();
         getCategoryPrograming();
         getCategoryGrowUp();
         getCategoryPsychology();
         getCategoryNovel();
         getCategoryNegotiation();
+
+
+
+
+
+
 
 
 
@@ -122,104 +145,6 @@ public class HomeFragment extends Fragment implements HomeAdapter.UserOnClickLis
 
             }
         },2));
-
-
-        binding.constrainPrograming.setOnClickListener(view -> webServiceCaller.getBookByCategory(new IResponseListener() {
-            @Override
-            public void onSuccess(Object ResponseMessage) {
-
-
-                CategoryModel categoryModel = (CategoryModel) ResponseMessage;
-                ArrayList<Category>categoryList = (ArrayList<Category>) categoryModel.getCategoryList();
-
-                String title = "برنامه نویسی";
-                setIntentShowMore(categoryList,title);
-            }
-
-            @Override
-            public void onFailure(String errorResponseMessage) {
-
-            }
-        },2));
-
-        binding.constrainGrowUp.setOnClickListener(view -> webServiceCaller.getBookByCategory(new IResponseListener() {
-            @Override
-            public void onSuccess(Object ResponseMessage) {
-
-
-                CategoryModel categoryModel = (CategoryModel) ResponseMessage;
-                ArrayList<Category>categoryList = (ArrayList<Category>) categoryModel.getCategoryList();
-
-                String title = "توسعه فردی";
-                setIntentShowMore(categoryList,title);
-
-            }
-
-            @Override
-            public void onFailure(String errorResponseMessage) {
-
-            }
-        },3));
-
-        binding.constrainPsychology.setOnClickListener(view -> webServiceCaller.getBookByCategory(new IResponseListener() {
-            @Override
-            public void onSuccess(Object ResponseMessage) {
-
-
-                CategoryModel categoryModel = (CategoryModel) ResponseMessage;
-                ArrayList<Category>categoryList = (ArrayList<Category>) categoryModel.getCategoryList();
-
-                String title = "روانشناسی";
-                setIntentShowMore(categoryList,title);
-
-            }
-
-            @Override
-            public void onFailure(String errorResponseMessage) {
-
-            }
-        },4));
-
-        binding.constrainNovel.setOnClickListener(view -> webServiceCaller.getBookByCategory(new IResponseListener() {
-            @Override
-            public void onSuccess(Object ResponseMessage) {
-
-                CategoryModel model = (CategoryModel) ResponseMessage;
-                List<Category> categoryList2 = model.getCategoryList();
-
-                CategoryModel categoryModel = (CategoryModel) ResponseMessage;
-                ArrayList<Category>categoryList = (ArrayList<Category>) categoryModel.getCategoryList();
-
-                String title = "رمان";
-                setIntentShowMore(categoryList,title);
-
-            }
-
-            @Override
-            public void onFailure(String errorResponseMessage) {
-
-            }
-        },5));
-
-        binding.constrainNegotiation.setOnClickListener(view -> webServiceCaller.getBookByCategory(new IResponseListener() {
-            @Override
-            public void onSuccess(Object ResponseMessage) {
-
-
-                CategoryModel categoryModel = (CategoryModel) ResponseMessage;
-                ArrayList<Category>categoryList = (ArrayList<Category>) categoryModel.getCategoryList();
-
-                String title = "مذاکره";
-                setIntentShowMore(categoryList,title);
-
-            }
-
-            @Override
-            public void onFailure(String errorResponseMessage) {
-
-            }
-        },6));
-
 
 
 
@@ -354,7 +279,8 @@ public class HomeFragment extends Fragment implements HomeAdapter.UserOnClickLis
 
 
 
-
+        DarkTheme darkTheme = new DarkTheme();
+        darkTheme.darkNight(requireActivity(),binding.switchColor);
 
         return binding.getRoot();
     }
@@ -369,7 +295,7 @@ public class HomeFragment extends Fragment implements HomeAdapter.UserOnClickLis
             @Override
             public void onSuccess(Object ResponseMessage) {
                 binding.setVisibility.setVisibility(View.VISIBLE);
-                binding.progressbar.setVisibility(View.GONE);
+
                 ///cleanUp with interface
                 Log.d("","");
                 CategoryModel model = (CategoryModel) ResponseMessage;
@@ -383,6 +309,13 @@ public class HomeFragment extends Fragment implements HomeAdapter.UserOnClickLis
                         new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false);
                 binding.recyclerPrograming.setLayoutManager(manager);
 
+                binding.constrainPrograming.setOnClickListener(view -> {
+
+                    String title = "برنامه نویسی";
+                    setIntentShowMore((ArrayList<Category>) categoryList,title);
+                });
+
+
                 Log.d("","");
             }
 
@@ -391,7 +324,6 @@ public class HomeFragment extends Fragment implements HomeAdapter.UserOnClickLis
                 /*binding.setVisibility.setVisibility(View.GONE);*/
                 Snackbar snackbar = Snackbar.make(requireView(),"اینترنت خود را چک نمایید",Snackbar.LENGTH_LONG);
                 snackbar.show();
-                binding.noConnection.setVisibility(View.GONE);
                 binding.setVisibility.setVisibility(View.GONE);
 
             }
@@ -423,6 +355,12 @@ public class HomeFragment extends Fragment implements HomeAdapter.UserOnClickLis
                 LinearLayoutManager manager =
                         new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false);
                 binding.recyclerGrowUp.setLayoutManager(manager);
+
+                binding.constrainGrowUp.setOnClickListener(view -> {
+                    String title = "توسعه فردی";
+                    setIntentShowMore((ArrayList<Category>) categoryList,title);
+                });
+
             }
 
             @Override
@@ -453,6 +391,11 @@ public class HomeFragment extends Fragment implements HomeAdapter.UserOnClickLis
                 LinearLayoutManager manager =
                         new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false);
                 binding.recyclerPsychology.setLayoutManager(manager);
+
+                binding.constrainPsychology.setOnClickListener(view -> {
+                    String title = "روانشناسی";
+                    setIntentShowMore((ArrayList<Category>) categoryList,title);
+                });
             }
 
             @Override
@@ -487,6 +430,11 @@ public class HomeFragment extends Fragment implements HomeAdapter.UserOnClickLis
                 LinearLayoutManager manager =
                         new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false);
                 binding.recyclerNovel.setLayoutManager(manager);
+
+                binding.constrainNovel.setOnClickListener(view -> {
+                    String title = "رمان";
+                    setIntentShowMore((ArrayList<Category>) categoryList,title);
+                });
             }
 
             @Override
@@ -520,6 +468,11 @@ public class HomeFragment extends Fragment implements HomeAdapter.UserOnClickLis
                 LinearLayoutManager manager =
                         new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false);
                 binding.recyclerNegotiation.setLayoutManager(manager);
+
+                binding.constrainNegotiation.setOnClickListener(view -> {
+                    String title = "مذاکره";
+                    setIntentShowMore((ArrayList<Category>) categoryList,title);
+                });
             }
 
             @Override
@@ -531,6 +484,34 @@ public class HomeFragment extends Fragment implements HomeAdapter.UserOnClickLis
 
             }
         },6);
+    }
+
+    public  void  getCategoryScroll(){
+        webServiceCaller.getCategoryScroll(new IResponseListener() {
+            @Override
+            public void onSuccess(Object ResponseMessage) {
+
+                CategoryScrollModel model = (CategoryScrollModel) ResponseMessage;
+                List<CategoryScroll>categoryScrolls = model.getScrollList();
+
+                CategoryScrollAdapter adapter = new CategoryScrollAdapter(categoryScrolls,getActivity());
+                binding.recyclerScroll.setAdapter(adapter);
+
+
+                LinearLayoutManager manager =
+                        new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false);
+                binding.recyclerScroll.setLayoutManager(manager);
+
+
+
+            }
+
+            @Override
+            public void onFailure(String errorResponseMessage) {
+                Log.d("errorResponseMessage",""+errorResponseMessage);
+            }
+        });
+
     }
 
 
@@ -561,97 +542,7 @@ public class HomeFragment extends Fragment implements HomeAdapter.UserOnClickLis
         }
     }*/
 
-    public void darkNight(){
 
-        SharedPreferences sharedPreferences
-                = requireActivity().getSharedPreferences(
-                "sharedPrefs", Context.MODE_PRIVATE);
-
-        final SharedPreferences.Editor editor
-                = sharedPreferences.edit();
-
-        final boolean isDarkModeOn
-                = sharedPreferences
-                .getBoolean(
-                        "isDarkModeOn", false);
-
-        // When user reopens the app
-        // after applying dark/light mode
-        if (isDarkModeOn) {
-            AppCompatDelegate
-                    .setDefaultNightMode(
-                            AppCompatDelegate
-                                    .MODE_NIGHT_YES);
-
-        }
-        else {
-            AppCompatDelegate
-                    .setDefaultNightMode(
-                            AppCompatDelegate
-                                    .MODE_NIGHT_NO);
-
-        }
-
-        binding.switchColor.setOnClickListener(
-                new View.OnClickListener() {
-
-                    @Override
-                    public void onClick(View view)
-                    {
-                        // When user taps the enable/disable
-                        // dark mode button
-                        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
-                            return;
-                        }
-                        mLastClickTime = SystemClock.elapsedRealtime();
-
-                        binding.switchColor.setEnabled(false);
-
-
-                        if (isDarkModeOn) {
-
-                            // if dark mode is on it
-                            // will turn it off
-                            AppCompatDelegate
-                                    .setDefaultNightMode(
-                                            AppCompatDelegate
-                                                    .MODE_NIGHT_NO);
-                            // it will set isDarkModeOn
-                            // boolean to false
-                            editor.putBoolean(
-                                    "isDarkModeOn", false);
-                            editor.apply();
-
-                            // change text of Button
-                            binding.switchColor.setChecked(
-                                    true);
-                        }
-                        else {
-
-                            // if dark mode is off
-                            // it will turn it on
-                            AppCompatDelegate
-                                    .setDefaultNightMode(
-                                            AppCompatDelegate
-                                                    .MODE_NIGHT_YES);
-
-                            // it will set isDarkModeOn
-                            // boolean to true
-                            editor.putBoolean(
-                                    "isDarkModeOn", true);
-                            editor.apply();
-
-                            // change text of Button
-                            binding.switchColor.setChecked(
-                                    false);
-                        }
-
-
-
-                    }
-                });
-
-    }
 
 
     @Override
@@ -677,4 +568,61 @@ public class HomeFragment extends Fragment implements HomeAdapter.UserOnClickLis
         intent.putExtra("title", title);
         startActivity(intent);
     }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        View viewShelf = getLayoutInflater().inflate(R.layout.special_daynamic_layout,null);
+
+        RecyclerView recyclerView = viewShelf.findViewById(R.id.recycler_container);
+
+        AppCompatTextView textView = viewShelf.findViewById(R.id.txt_daynamic);
+
+        RelativeLayout relativeLayout = viewShelf.findViewById(R.id.relative_bookmark);
+
+
+
+        if (appDatabase.idao().categoryList().size() != 0) {
+
+            HomeAdapter bookMarkAdapter = new HomeAdapter(appDatabase.idao().categoryList(),getActivity(),this::onClickReadingPdf);
+            recyclerView.setAdapter(bookMarkAdapter);
+
+
+            LinearLayoutManager manager = new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false);
+
+            recyclerView.setLayoutManager(manager);
+
+            textView.setText("درحال خواندن");
+
+            relativeLayout.setOnClickListener(view -> onClickReading((ArrayList<Category>) appDatabase.idao().categoryList(),"درحال خواندن"));
+
+
+
+            binding.linearHomeFragment.addView(viewShelf);
+
+        }else{
+
+            binding.linearHomeFragment.removeView(viewShelf);
+        }
+
+
+    }
+
+    public void onClickReading(ArrayList<Category>categoryList,String title){
+        Intent intent = new Intent(getActivity(), ShowAllBookActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("data",categoryList);
+        intent.putExtra("title",title);
+        startActivity(intent);
+    }
+
+    public void onClickReadingPdf(Category category){
+        Intent intent = new Intent(getActivity(), PdfBookActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("data",category);
+        startActivity(intent);
+    }
+
 }

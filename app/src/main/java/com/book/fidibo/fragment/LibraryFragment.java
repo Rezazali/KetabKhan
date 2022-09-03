@@ -20,7 +20,7 @@ import com.book.fidibo.adapter.CategoryAdapter;
 import com.book.fidibo.adapter.LibraryAdapter;
 import com.book.fidibo.database.AppDatabase;
 import com.book.fidibo.databinding.FragmentLibraryBinding;
-import com.book.fidibo.databinding.FragmentNavLibrayBinding;
+
 import com.book.fidibo.models.Category;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.squareup.picasso.Picasso;
@@ -44,18 +44,18 @@ public class LibraryFragment extends Fragment implements CategoryAdapter.UserOnC
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentLibraryBinding.inflate(getLayoutInflater());
         appDatabase = AppDatabase.getInstance(getActivity());
         // Inflate the layout for this fragment\
 
-        setBottomSheet();
+        setDataAdapter();
         return binding.getRoot();
     }
 
 
-    public void setBottomSheet(){
+    public void setDataAdapter(){
         LibraryAdapter adapter = new LibraryAdapter(appDatabase.idao().categoryList(),getActivity(), this);
         binding.recyclerLibrary.setAdapter(adapter);
 
@@ -70,7 +70,7 @@ public class LibraryFragment extends Fragment implements CategoryAdapter.UserOnC
     public void onResume() {
         super.onResume();
 
-        setBottomSheet();
+        setDataAdapter();
 
 
     }
@@ -92,34 +92,28 @@ public class LibraryFragment extends Fragment implements CategoryAdapter.UserOnC
         txt_title.setText(category.getBookTitle());
         txt_publisher.setText(category.getBookPublisher());
 
-        txt_info_bottom_sheet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), BookDetailActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("data",category);
-                startActivity(intent);
-            }
+        txt_info_bottom_sheet.setOnClickListener(view -> {
+            Intent intent = new Intent(getActivity(), BookDetailActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra("data",category);
+            startActivity(intent);
         });
 
-        txt_delete_book.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        txt_delete_book.setOnClickListener(view -> {
 
-                appDatabase.idao().deleteVideo(Integer.parseInt(category.getId()));
+            appDatabase.idao().deleteVideo(Integer.parseInt(category.getId()));
 
 
 /*                File file = new File("/data/data/com.book.fidibo/files/downloads/");
-                  file.delete();
-                */
+              file.delete();
+            */
 
-                setBottomSheet();
-                bottomSheetDialog.cancel();
-             /*   getActivity().finish();
-                getActivity().overridePendingTransition(0, 0);
-                getActivity().startActivity(getActivity().getIntent());
-                getActivity().overridePendingTransition(0, 0);*/
-            }
+            setDataAdapter();
+            bottomSheetDialog.cancel();
+         /*   getActivity().finish();
+            getActivity().overridePendingTransition(0, 0);
+            getActivity().startActivity(getActivity().getIntent());
+            getActivity().overridePendingTransition(0, 0);*/
         });
 
         bottomSheetDialog.show();

@@ -11,10 +11,11 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.book.fidibo.models.BookMark;
 import com.book.fidibo.models.Category;
+import com.book.fidibo.models.Favorite;
 import com.book.fidibo.models.Shelf;
 import com.book.fidibo.models.SpecialCategory;
 
-@Database(entities = {Category.class, SpecialCategory.class, BookMark.class, Shelf.class}, version = 2)
+@Database(entities = {Category.class, SpecialCategory.class, BookMark.class, Shelf.class, Favorite.class}, version = 2)
 public abstract class AppDatabase extends RoomDatabase {
 
 

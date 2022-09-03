@@ -1,31 +1,19 @@
 package com.book.fidibo.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.Filter;
-import android.widget.Filterable;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.book.fidibo.R;
-import com.book.fidibo.activity.PdfBookActivity;
-import com.book.fidibo.activity.uiActivity.BottomSheet;
 import com.book.fidibo.adapter.viewHolder.CategoryViewHolder;
 import com.book.fidibo.models.Category;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> {

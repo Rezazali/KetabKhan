@@ -20,7 +20,7 @@
     <com.book.fidibo.customeview.PersianTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="کتابخانه"
+        android:text="@string/library_text"
         android:textColor="@color/txtColor"
         android:textSize="25sp"
         android:layout_gravity="center"/>
@@ -40,7 +40,7 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="قفسه"
+            android:text="@string/shelf_text"
             app:tabBackground="@color/black"
             app:tabIndicatorColor="#00FFFFFF"
             />
@@ -48,7 +48,7 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="کتابخانه"
+            android:text="@string/library_text"
             >
 
         </com.google.android.material.tabs.TabItem>

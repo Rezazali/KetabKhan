@@ -45,10 +45,19 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/margin_8"
-                        android:text="دانلود شده"
+                        android:text="@string/download_shelf_text"
                         android:textColor="@color/txtColor"
                         android:textSize="18sp"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txt_number_download"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_8"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/img_publisher_shelf"
                         app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -85,15 +94,24 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/margin_8"
-                        android:text="نشان شده"
+                        android:text="@string/book_mark_text"
                         android:textColor="@color/txtColor"
                         android:textSize="18sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txt_number_bookMark"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_8"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/img_category"
+                        app:layout_constraintTop_toTopOf="parent" />
+
                     <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/txt_category"
+                        android:id="@+id/img_category"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/margin_8"
@@ -129,7 +147,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
                         android:layout_marginEnd="@dimen/margin_8"
-                        android:text="تعداد دانلود"
+                        android:text="@string/number_donload"
                         android:textColor="@color/txtColor"
                         android:textSize="18sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -172,7 +190,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/margin_8"
-                        android:text="کتاب الکترونیکی"
+                        android:text="@string/epub_book_text"
                         android:textColor="@color/txtColor"
                         android:textSize="18sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -207,11 +225,14 @@
         </androidx.cardview.widget.CardView>
 
 
-        <LinearLayout
+        <GridLayout
             android:id="@+id/linear_container_shelf"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="vertical"
+            android:horizontalSpacing="6dp"
+            android:numColumns="2"
+            android:verticalSpacing="6dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_add_shelf" />
@@ -223,12 +244,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="100dp"
             android:background="@drawable/button_shape"
-            android:text="ساختن قفسه جدید"
+            android:text="@string/add_new_shelf_text"
             android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/card_box_info" />
+            app:layout_constraintTop_toBottomOf="@+id/card_box_info"
+        />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -8,6 +8,7 @@ import androidx.room.Update;
 
 import com.book.fidibo.models.BookMark;
 import com.book.fidibo.models.Category;
+import com.book.fidibo.models.Favorite;
 import com.book.fidibo.models.Shelf;
 import com.book.fidibo.models.SpecialCategory;
 
@@ -28,18 +29,41 @@ public interface IDAO {
     @Insert
     long insertShelf(Shelf shelf);
 
+    @Insert
+    void insertFavorite(Favorite favorite);
+
+    @Query("select*from tbl_shelf")
+    List<Shelf> shelfList();
+
 
     @Query("select * from tbl_book")
     List<Category> categoryList();
 
 
+    @Query("select shelfTitle from tbl_shelf")
+    List<String>list();
+
+    @Query("select id from tbl_shelf")
+    List<Integer>listId();
+
+
     @Query("select * from tbl_book_mark")
     List<BookMark> bookMarkList();
+
+    @Query("select * from tbl_book_mark")
+    List<Category> bookMarkListSingle();
 
 
 
     @Query("select * from tbl_specialCategory")
     List<SpecialCategory> specialCategoryList();
+
+    @Query("select * from tbl_favorite")
+    List<Favorite> favoriteList();
+
+    @Query("select id from tbl_favorite")
+    List<Integer> listIdFavorite();
+
 
 
     @Update
@@ -55,6 +79,10 @@ public interface IDAO {
     @Query("SELECT EXISTS(SELECT * FROM tbl_shelf where id = :shelfId)")
     boolean isRowExistsShelf(int shelfId);
 
+    @Query("SELECT EXISTS(SELECT * FROM tbl_favorite where id = :favoriteID)")
+    boolean isRowExistsFavorite(int favoriteID);
+
+    //Query for delete a row
 
     @Query("delete from tbl_book where id = :categoryId")
     void deleteVideo(int categoryId);
@@ -65,6 +93,10 @@ public interface IDAO {
     @Query("delete from tbl_specialCategory where id = :listId")
      void deleteCategory(int listId);
 
+    @Query("delete from tbl_shelf where id = :listShelf")
+    void deleteShelf(int listShelf);
 
 
+    @Query("delete from tbl_favorite where id = :favoriteId")
+    void deleteFavorite(int favoriteId);
 }

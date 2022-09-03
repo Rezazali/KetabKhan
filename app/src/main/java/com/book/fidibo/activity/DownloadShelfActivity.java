@@ -5,9 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.view.View;
 
-import com.book.fidibo.R;
 import com.book.fidibo.adapter.LibraryAdapter;
 import com.book.fidibo.database.AppDatabase;
 import com.book.fidibo.databinding.ActivityDownloadShelfBinding;

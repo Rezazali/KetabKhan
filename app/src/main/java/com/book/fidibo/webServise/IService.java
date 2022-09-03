@@ -2,7 +2,9 @@ package com.book.fidibo.webServise;
 
 import androidx.annotation.Nullable;
 
+import com.book.fidibo.models.CategoryScroll;
 import com.book.fidibo.models.objectModel.CategoryModel;
+import com.book.fidibo.models.objectModel.CategoryScrollModel;
 import com.book.fidibo.models.objectModel.SpecialCategoryModel;
 
 import retrofit2.Call;
@@ -15,6 +17,10 @@ public interface IService {
     @Nullable
     @GET("api.php?latest")
     Call<CategoryModel> getListBook();
+
+    @Nullable
+    @GET("api.php?cat_list")
+    Call<CategoryScrollModel> getCategoryScroll();
 
     @Nullable
     @GET("api.php")

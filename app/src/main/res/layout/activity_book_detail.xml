@@ -34,8 +34,8 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/card_book_detail"
-                    android:layout_width="200dp"
-                    android:layout_height="280dp"
+                    android:layout_width="150dp"
+                    android:layout_height="250dp"
                     android:layout_marginTop="60dp"
                     android:layout_marginBottom="10dp"
                     android:elevation="8dp"
@@ -184,10 +184,10 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_download_pdf"
-                    android:layout_width="200dp"
+                    android:layout_width="280dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/button_shape"
-                    android:text="دانلود"
+                    android:text="@string/download_text"
                     android:fontFamily="@font/iran_sans"
                     android:textColor="@color/white"
                     android:textSize="20sp"
@@ -230,7 +230,7 @@
                 app:layout_constraintTop_toBottomOf="@id/txt_description"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="@dimen/margin_8"
-                android:text="اطلاعات کتاب"
+                android:text="@string/book_information_text"
                 android:textSize="25sp"
                 android:layout_marginEnd="25dp"
                 android:textColor="@color/txtColor"
@@ -260,7 +260,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
-                        android:text="ناشر"
+                        android:text="@string/publisher_text"
                         android:textColor="@color/txtColor"
                         android:textSize="18sp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -290,7 +290,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
-                        android:text="دسته بندی"
+                        android:text="@string/category_text"
                         android:textSize="18sp"
                         android:textColor="@color/txtColor"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -320,7 +320,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
-                        android:text="تعداد دانلود"
+                        android:text="@string/toatal_download"
                         android:textSize="18sp"
                         android:textColor="@color/txtColor"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -353,7 +353,7 @@
                 android:id="@+id/txt_recent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="آخرین بازدید ها"
+                android:text="@string/last_seen_text"
                 android:textSize="20sp"
                 android:textColor="@color/txtColor"
                 app:layout_constraintTop_toBottomOf="@id/card_box_info"
@@ -366,7 +366,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_recent"
                 android:layout_width="match_parent"
-                android:layout_height="240dp"
+                android:layout_height="300dp"
                 app:layout_constraintTop_toBottomOf="@id/txt_recent"
                 android:background="@drawable/book_shape"/>
 

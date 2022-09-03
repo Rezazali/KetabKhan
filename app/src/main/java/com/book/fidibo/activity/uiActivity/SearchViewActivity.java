@@ -45,10 +45,6 @@ public class SearchViewActivity extends AppCompatActivity implements SearchAdapt
 
         binding.searchToolbar.getChildAt(0).setOnClickListener(view -> onBackPressed());
 
-    /*    binding.searchView.clearFocus();
-        binding.searchView.setActivated(true);
-        binding.searchView.setIconified(false);
-        binding.s.setIconified(false);*/
 
 
 
